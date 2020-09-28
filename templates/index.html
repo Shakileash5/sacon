@@ -35,6 +35,14 @@
       <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </head>
     <body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
@@ -125,15 +133,7 @@
 
     </div>
 </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<div id="id01" class="modal">
+<div id="id01" class="modal">
     <div style="background-color:lightblue">
     <span class="down2" >Results</span>
  
@@ -151,6 +151,7 @@
 	</div>
   
 </div>
+
 <div class="row" style="background-color:#4f98ca;color:white;padding-bottom:90PX; padding-left:50px;padding-top:60px;padding-right:30px; margin-top:30px;margin-right:0px;">
  <div class=".col-md-8"><h2 style="color:rgb(247, 245, 245);"><b><span style="color:red;">D</span>o you wish to <span style="color:red;">p</span>ublish <span style="color:red;">y</span>our <span style="color:red;">t</span>hesis?...</b></h2>
 <h5 ><p>Send your thesis to us.<br>Attach your thesis and type your discription then mail us,we will send you the feedback about the thesis as soon as possible.</p>
@@ -229,14 +230,13 @@
         $(document).ready(function(){
             $('#search_text').keyup(function(){
                 var name = $('#search_text').val();
-
+                console.log(name);
                 $.ajax({
                     type: 'post',
+                    url: "/search",
                     data: {ajax: 1,name: name},
                     success: function(response)
 					{    
-						//var returnedData = JSON.stringify(response);
-			     	    
                         console.log(response);
 						$('#result').html(response);
                     }
