@@ -230,7 +230,6 @@
         $(document).ready(function(){
             $('#search_text').keyup(function(){
                 var name = $('#search_text').val();
-                console.log(name);
                 $.ajax({
                     type: 'post',
                     url: "/search",
