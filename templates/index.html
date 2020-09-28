@@ -236,14 +236,22 @@
                     data: {ajax: 1,name: name},
                     success: function(response)
 					{    
-                        console.log(response);
-						$('#result').html(response);
+                        res = JSON.parse(response)
+                        keys = Object.keys(res)
+                        console.log(keys.length);
+                        var convert = ""
+                        var span = document.createElement('span');
+                        span.innerHTML = '<button id= onclick="myclick(""'+12+'")" />';
+                        for(var i=0;i<keys.length;i++){
+                            var label = res[keys[i]][4]
+                            convert = convert +  '<br> id: '+i+' - Author: '+res[keys[i]][0]+' - Name: '+res[keys[i]][1]+' - Year: '+res[keys[i]][3]+ ' <button data-label="'+label+'" onClick = "myclick(this)"> View </button> <br> ';
+                        }
+                        
+						$('#result').html(convert);
                     }
                 });
             });
         });
-        </script>
-<script>
 // Get the modal
 var modal = document.getElementById('id01');
 
@@ -254,7 +262,9 @@ window.onclick = function(event) {
     }
 }
 function myclick(data)
-{    console.log(data);
+{    
+    var animalType = data.getAttribute("data-label");
+    console.log(animalType);
     document.getElementById("download").href=data;
     document.getElementById("frame").src=data;
 	document.getElementById("id01").style.display="block";
