@@ -1,4 +1,5 @@
 import pyrebase
+import requests
 
 config = {
   "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
@@ -29,8 +30,17 @@ data = {"Author": "E. V. Abdulla", "Year": 2006,"University":"Farook College","T
 #db.child("thesis_data").push(data)
 value = dict(db.child("thesis_data").get().val())
 #print(value)
+storage = firebase.storage()
+myfile = storage.child("TD-000005.pdf")
+#storage.child("TD-000171.docx").download("templates","TD-000171.docx")
+url = myfile.get_url(None)
+print(url)
+res = requests.get(url, allow_redirects=True)
+print(res.headers.get('content-type'))
+open("static/TD-000005.pdf", 'wb').write(res.content)
 
-find = "Rallidae"
+
+'''find = "Rallidae"
 keys = value.keys()
 for key in keys:
     gets = value[key].values()
@@ -45,4 +55,4 @@ for key in keys:
                     print(find)
         elif isinstance(get, int):
             if find ==  get:
-                print(find)                      
+                print(find)     '''                 

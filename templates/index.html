@@ -146,7 +146,7 @@
     </div>
 
     <div class="container" style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
-	<iframe width="100%" height="100%" src="http://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0" allowfullscreen=""
+	<iframe width="100%" height="100%" src="/TD-000171.docx" frameborder="1" id="frame" frameborder="0" allowfullscreen=""
   style="position:absolute; top:0; left: 0" allowfullscreen ></iframe>
 	</div>
   
@@ -226,6 +226,7 @@
       
     </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js" integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ==" crossorigin="anonymous"></script>
   <script>
         $(document).ready(function(){
             $('#search_text').keyup(function(){
@@ -265,8 +266,9 @@ function myclick(data)
 {    
     var animalType = data.getAttribute("data-label");
     console.log(animalType);
-    document.getElementById("download").href=data;
-    document.getElementById("frame").src=data;
+    document.getElementById("download").href="https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000171.docx?alt=media";
+    document.getElementById("frame").src="https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
 	document.getElementById("id01").style.display="block";
+
 }	
 </script>		
