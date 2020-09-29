@@ -80,13 +80,16 @@ def get_file():
         data = dict(request.form)
         find = data["name"]
         try:
-            label_split = find.split("-")
-            label_split[1] = "0" + label_split[1] + ".pdf"
-            label = ("-").join(label_split)
+            #label_split = find.split("-")
+            #label_split[1] = "0" + label_split[1] + ".pdf"
+            #label = ("-").join(label_split)
             #print(label)
+            label = find
+            if ".pdf" not in find:
+                label = find+".pdf"
             myfile = storage.child(label)
             url = myfile.get_url(None)
-            #print(url)    
+            print(url)    
             return url
         except:
             return "500"   
@@ -115,13 +118,14 @@ def upload_file():
 
       data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"]}             
       extention = ffile.filename.split(".")[-1]
-      
+      print(data)
       if extention != "pdf":
           return '500'
       else:
         ffile.save(secure_filename(ffile.filename))  
         storage.child(ffile.filename).put(ffile.filename)
         val = dict(db.child("thesis_data").get().val())
+        print("recieved")
         keys = val.keys() 
         flag = 0
         for key in keys:
