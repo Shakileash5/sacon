@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from werkzeug import secure_filename
 from flask_cors import CORS
 import os
 import json
@@ -10,20 +11,27 @@ config = {
   "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
   "authDomain": "sacon-250805.firebaseapp.com",
   "databaseURL": "https://sacon-250805.firebaseio.com/",
-  "storageBucket": "gs://sacon-250805.appspot.com/",
+  "storageBucket": "sacon-250805.appspot.com",
   "serviceAccount": "Credentials/sacon-250805-firebase-adminsdk-cc9yo-7d68092103.json"
 }
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 value = dict(db.child("thesis_data").get().val())
 keys = value.keys()
+storage = firebase.storage()
 
 @app.route("/")
 def index():
-    global keys,value   
+    global keys,value,storage   
     value = dict(db.child("thesis_data").get().val())
     keys = value.keys()
+    storage = firebase.storage()
     return render_template("index.html")
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
 
 @app.route("/search",methods = ["GET","POST"])
 def search():
@@ -66,7 +74,64 @@ def search():
     except:
             return "500"
                     
-    
+@app.route("/get_file",methods = ["GET","POST"])
+def get_file():
+    if request.method == "POST":
+        data = dict(request.form)
+        find = data["name"]
+        try:
+            label_split = find.split("-")
+            label_split[1] = "0" + label_split[1] + ".pdf"
+            label = ("-").join(label_split)
+            #print(label)
+            myfile = storage.child(label)
+            url = myfile.get_url(None)
+            #print(url)    
+            return url
+        except:
+            return "500"   
+
+@app.route('/upload', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      ffile = request.files['file']
+      form = dict(request.form)
+      print(form)
+      keywords = form["Keywords"]
+      keywords = keywords.split(",")
+      keys = 0
+      i = 0
+      for i in range(len(keywords)):
+          if "\r" in keywords[i]:
+              keywords[i] = keywords[i].replace("\r","")
+          if "\n" in keywords[i]:
+              keywords[i] = keywords[i].replace("\n","")
+          keywords[i] = keywords[i].strip()      
+          if len(keywords[i]) == 0:
+              keys+=1
+      
+      for i in range(keys):
+        keywords.remove("")   
+
+      data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"]}             
+      extention = ffile.filename.split(".")[-1]
+      
+      if extention != "pdf":
+          return '500'
+      else:
+        ffile.save(secure_filename(ffile.filename))  
+        storage.child(ffile.filename).put(ffile.filename)
+        val = dict(db.child("thesis_data").get().val())
+        keys = val.keys() 
+        flag = 0
+        for key in keys:
+            if val[key]["Title"] == data["Title"]:
+                print(key)
+                db.child("thesis_data").child(key).update(data)
+                flag = 1
+        if flag == 0:
+            db.child("thesis_data").push(data) 
+        return render_template("admin.html")
 
 
 if __name__ == "__main__":

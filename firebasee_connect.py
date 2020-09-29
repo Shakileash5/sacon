@@ -25,19 +25,26 @@ keywords = ["Rails",
 "Microhabitat characteristics",
 "Breeding success"]
 
-data = {"Author": "E. V. Abdulla", "Year": 2006,"University":"Farook College","Title":"Biology, ecology and behaviour of Purple Moorhen Porphyrio porphyrio","Keywords":keywords,"Label":"TD-00022","Type":"Ph.D."}
+data = {"Author": "E. V. Abdulla", "Year": "2006","University":"Farook College","Title":"Biology, ecology and behaviour of Purple Moorhen Porphyrio porphyrio","Keywords":keywords,"Label":"TD-00022","Type":"Ph.D."}
 
 #db.child("thesis_data").push(data)
-value = dict(db.child("thesis_data").get().val())
+
+val = dict(db.child("thesis_data").get().val())
+print(val)
+keys = val.keys()
+
+
+
+#value = dict(db.child("thesis_data").get().val())
 #print(value)
 storage = firebase.storage()
-myfile = storage.child("TD-000005.pdf")
-#storage.child("TD-000171.docx").download("templates","TD-000171.docx")
-url = myfile.get_url(None)
-print(url)
-res = requests.get(url, allow_redirects=True)
-print(res.headers.get('content-type'))
-open("static/TD-000005.pdf", 'wb').write(res.content)
+#myfile = storage.child("TD-000104.pdf")
+#url = myfile.get_url(None)
+#print(url)
+#storage.child("TD-00171.pdf").put("TD-00171.pdf")
+#res = requests.get(url, allow_redirects=True)
+#print(res.headers.get('content-type'))
+#open("static/TD-000005.pdf", 'wb').write(res.content)
 
 
 '''find = "Rallidae"

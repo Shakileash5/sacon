@@ -51,11 +51,11 @@
             class="img-responsive  center-block" alt="Responsive image" height=80></image>
     </div>
     <header class="jumbotron">
-        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-success" >
+        <nav class="navbar  navbar-expand-md navbar-dark bg-success" >
             <a class="navbar-brand" href="#">
                 SACON
               </a>
-            
+
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -135,13 +135,6 @@
 </div>
 <div id="id01" class="modal">
     <div style="background-color:lightblue">
-    <span class="down2" >Results</span>
- 
-	<span class="down" >
-	   <a href="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" id="download" download="Thesis">
-	 <i class="fa fa-download"></i></a></span>
-	 
- 
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
 
@@ -234,21 +227,29 @@
                 $.ajax({
                     type: 'post',
                     url: "/search",
-                    data: {ajax: 1,name: name},
+                    data: {name: name},
                     success: function(response)
 					{    
+                        if (response == "500"){
+                            console.log("Something went wrong!!")
+                        }
+                        else{
                         res = JSON.parse(response)
                         keys = Object.keys(res)
                         console.log(keys.length);
                         var convert = ""
-                        var span = document.createElement('span');
-                        span.innerHTML = '<button id= onclick="myclick(""'+12+'")" />';
-                        for(var i=0;i<keys.length;i++){
-                            var label = res[keys[i]][4]
-                            convert = convert +  '<br> id: '+i+' - Author: '+res[keys[i]][0]+' - Name: '+res[keys[i]][1]+' - Year: '+res[keys[i]][3]+ ' <button data-label="'+label+'" onClick = "myclick(this)"> View </button> <br> ';
+                        if (keys.length == 0){
+                            convert = "<br> No Such data is found !!!";
+                        }
+                        else{
+                            for(var i=0;i<keys.length;i++){
+                                var label = res[keys[i]][4]
+                                convert = convert +  '<br> id: '+i+' - Author: '+res[keys[i]][0]+' - Name: '+res[keys[i]][1]+' - Year: '+res[keys[i]][3]+ ' <button data-label="'+label+'" onClick = "myclick(this)"> View </button> <br> ';
+                            }
                         }
                         
-						$('#result').html(convert);
+						$('#result').html   (convert);
+                        }
                     }
                 });
             });
@@ -264,11 +265,32 @@ window.onclick = function(event) {
 }
 function myclick(data)
 {    
-    var animalType = data.getAttribute("data-label");
-    console.log(animalType);
-    document.getElementById("download").href="https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000171.docx?alt=media";
-    document.getElementById("frame").src="https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
-	document.getElementById("id01").style.display="block";
+    var Label_name = data.getAttribute("data-label");
+    console.log(Label_name);
+    url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
+    $.ajax({
+                    type: 'post',
+                    url: "/get_file",
+                    data: {name: Label_name},
+                    success: function(response)
+					{    
+                        //res = JSON.parse(response)
+                        //keys = Object.keys(res)
+                        if (response == "500"){
+                        console.log("Data Not Found");
+                        }
+                        else{
+                              url = response;  
+                              console.log(url);
+                             
+                        }
+                        document.getElementById("frame").src=url;
+	                    document.getElementById("id01").style.display="block";
+                    }
+                });
+          
+            
+    
 
 }	
 </script>		
