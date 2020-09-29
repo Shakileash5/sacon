@@ -124,6 +124,7 @@ def upload_file():
       else:
         ffile.save(secure_filename(ffile.filename))  
         storage.child(ffile.filename).put(ffile.filename)
+        os.remove(ffile.filename) 
         val = dict(db.child("thesis_data").get().val())
         print("recieved")
         keys = val.keys() 
