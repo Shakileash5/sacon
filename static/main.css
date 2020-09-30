@@ -172,7 +172,8 @@ html {
   }
    #top{
                       background-image:url("http://www.sacon.in/wp-content/themes/sacontheme2017/images/logo-background.jpg") ;
-                  }
+                      padding: 0%;
+        }
                   body {
                       background-color: #d24dff;
                   }
