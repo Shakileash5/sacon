@@ -1,61 +1,61 @@
-
 <!doctype html>
 <html>
-    <head>
-	<title>Sacon - Search</title>
-     <link rel="icon" href="{{ url_for('static', filename='cropped-saconlogo-small-32x32.png') }}"
-        sizes="32x32">
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+
+<head>
+    <title>Sacon - Search</title>
+    <link rel="icon" href="{{ url_for('static', filename='cropped-saconlogo-small-32x32.png') }}" sizes="32x32">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		
-	 <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
-	
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-	 <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </head>
-    <body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
-    <div class="jumbotron" style="padding: 0%;" >    
-    <div id="top">
-        <image src="{{ url_for('static', filename='saconlogo.png') }}"
-            class="img-responsive  center-block" alt="Responsive image" height=80></image>
-    </div>
-    
-        <nav class="navbar  navbar-expand-md navbar-dark bg-success" style="padding-top: 0%;" >
+
+<body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
+    <div class="jumbotron" style="padding: 0%;">
+        <div id="top">
+            <image src="{{ url_for('static', filename='saconlogo.png') }}" class="img-responsive  center-block"
+                alt="Responsive image" height=80></image>
+        </div>
+
+        <nav class="navbar  navbar-expand-md navbar-dark bg-success" style="padding-top: 0%;">
             <a class="navbar-brand" href="#">
                 SACON
-              </a>
+            </a>
 
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -65,24 +65,24 @@
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="https://www.sacon.in/">Home
+                        <a class="nav-link" href="https://www.sacon.in/">Home
                             <span class="sr-only">(current)</span>
-                          </a>
+                        </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#search">Services</a>
+                        <a class="nav-link" href="#search">Services</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
-                  </ul>
+                </ul>
             </div>
         </nav>
 
-    
+
         <div class="container" id="about" style="top: -20;">
             <div class="row">
                 <div class="col-sm"></div>
@@ -92,23 +92,27 @@
                     <p style="color:bisque" class="lead">Read interesting facts and thesis about your favourite birds!
                     </p>
                     <br />
-                    <p style="color:bisque"> Salim Ali, who is known as the father of Indian Ornithology took initiatives to establish a national institution which would take up the challenging tasks of developing expertise and knowledge in the field of ornithology and nature conservation</p>
+                    <p style="color:bisque"> Salim Ali, who is known as the father of Indian Ornithology took
+                        initiatives to establish a national institution which would take up the challenging tasks of
+                        developing expertise and knowledge in the field of ornithology and nature conservation</p>
                     <p style="color:bisque">Want to know more? Search for more thesis here!</p>
-                    <p style="color:bisque">Search for the birds if you have more info go for advance search and search using author name,university,and titles</p> 
+                    <p style="color:bisque">Search for the birds if you have more info go for advance search and search
+                        using author name,university,and titles</p>
                 </div>
             </div>
         </div>
-      
+
 
         <div class="container">
             <div class="row" id="appSummary">
                 <h1 class="display-3" style="color:bisque"><br />Why This Is Awesome</h1>
-                <p class="lead" style="color:bisque">Because, No other Indian Website have this feature to search for bird thesis</p>
+                <p class="lead" style="color:bisque">Because, No other Indian Website have this feature to search for
+                    bird thesis</p>
             </div>
         </div>
 
     </div>
-	  <div class="container" id="search">
+    <div class="container" id="search">
         <div class="row">
             <div class="search-css">
                 <div class="input-group" id="adv-search">
@@ -117,50 +121,61 @@
                     </div><br />
                     <div class="col-sm-6">
                         <form class="form-inline" method="GET">
-                            <p><input type="text" name="key"  id="search_text" placeholder="Search"></p>
-                           
+                            <p><input type="text" name="key" id="search_text" placeholder="Search"></p>
+
                         </form>
                     </div>
-               
+
                 </div>
             </div>
         </div>
 
-        <div class="search-result" style = "padding-top:20px; padding-bottom:30px;">
-       
-	   <div id="result" style="color:black;">   
-	   Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-	   </div>
+        <div class="search-result" style="padding-top:20px; padding-bottom:30px;">
+
+            <div id="result" style="color:black;">
+                Result will appear here
+            </div>
+
+        </div>
+    </div>
+    <div id="id01" class="modal">
+        <div style="background-color:rgb(205, 234, 243)">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                title="Close Modal">&times;</span>
+        </div>
+
+        <div class="container"
+            style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;">
+            <iframe class="responsive-iframe" width="100%" height="100%"
+                src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
+                allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>
+        </div>
 
     </div>
-</div>
-<div id="id01" class="modal">
-    <div style="background-color:lightblue">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    <div class="row"
+        style="background-color:#4f98ca;color:white;padding-bottom:90PX; padding-left:50px;padding-top:60px;padding-right:30px; margin-top:30px;margin-right:0px;">
+        <div class=".col-md-8">
+            <h2 style="color:rgb(247, 245, 245);"><b>Do you wish to publish your thesis?...</b></h2>
+            <h5>
+                <p>Send your thesis to us.<br>Attach your thesis and type your discription then mail us,we will send you
+                    the feedback about the thesis as soon as possible.</p>
+                <br>
+                <p>SACON is an friendly organisation, we always welcome your effort on the nature...
+            </h5>
+        </div>
+        <span style="border-left: 5px solid #c1461a; margin-left:20px;padding-right:30px;"></span>
+        <div class=".col-md-4" style="padding-top:10px;padding-left:0px;">
+            <h3>Click to mail US <i class="fa fa-envelope"></i></h3>
+
+            <a href="mailto:nod.sacon@gmail.com?subject=Thesis on board" target="_blank" class="btn btn-primary">Email
+                Us</a>
+        </div>
+
     </div>
+    <footer class="footer-distributed" id="contact" style="margin-top:0;">
 
-    <div class="container" style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;">
-	<iframe class="responsive-iframe" width="100%" height="100%" src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0" allowfullscreen=""
-  style="position:absolute; top:0; left: 0" allowfullscreen ></iframe>
-	</div>
-  
-</div>
-
-<div class="row" style="background-color:#4f98ca;color:white;padding-bottom:90PX; padding-left:50px;padding-top:60px;padding-right:30px; margin-top:30px;margin-right:0px;">
- <div class=".col-md-8"><h2 style="color:rgb(247, 245, 245);"><b><span style="color:red;">D</span>o you wish to <span style="color:red;">p</span>ublish <span style="color:red;">y</span>our <span style="color:red;">t</span>hesis?...</b></h2>
-<h5 ><p>Send your thesis to us.<br>Attach your thesis and type your discription then mail us,we will send you the feedback about the thesis as soon as possible.</p>
-<br>
-<p>SACON is an friendly organisation, we always welcome your effort on the nature...</h5>
-</div>
-  <span style="border-left: 5px solid #D20120; padding-left:20px;padding-right:30px;"></span> 
-<div class=".col-md-4"  style="padding-top:10px;padding-left:0px;"><h3>Click to mail <span style="color:red;">US</span> <i class="fa fa-envelope"></i></h3>
-
-<a href="mailto:someone@yoursite.com?subject=Thesis on board" target="_blank" class="btn btn-primary">Email Us</a>  </div>
-
-</div>
-<footer class="footer-distributed" id="contact" style="margin-top:0;">
-
-			<div class="footer-left">
+        <!-- <div class="footer-left">
 
 				<h3>Company<span>logo</span></h3>
 
@@ -178,120 +193,126 @@
 					<a href="#">Contact</a>
 				</p>
 
-				<p class="footer-company-name">Company Name &copy; 2015</p>
-			</div>
+				<p class="footer-company-name">SACON &copy; 2020</p>
+			</div> -->
 
-			<div class="footer-center">
+        <div class="footer-center">
 
-				<div>
-					<i class="fa fa-map-marker"></i>
-					<p><span>21 Revolution Street</span> Paris, France</p>
-				</div>
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p>
+                    <span> National Ornithological Databank(NOD) Cell</span>
+                    <span> Sálim Ali Centre for Ornithology and Natural History (SACON)</span>
+                    <span> Anaikatty (POST)</span>
+                    <span> Coimbatore-641108</span>
+                    Tamil Nadu, India.
+                </p>
+            </div>
 
-				<div>
-					<i class="fa fa-phone"></i>
-					<p>+1 555 123456</p>
-				</div>
+            <div style="margin-top: 15px;">
+                <i class="fa fa-phone"></i>
+                <a href="tel:0422-2203127">0422-2203127</a>
+            </div>
 
-				
 
-			</div>
 
-			<div class="footer-right">
+        </div>
 
-				<p class="footer-company-about">
+        <div class="footer-right">
+
+            <!-- <p class="footer-company-about">
 					<span>About the company</span>
 					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-				</p>
+				</p> -->
 
-				<div class="footer-icons">
+            <div class="footer-icons">
 
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
-					<a href="#"><i class="fa fa-linkedin"></i></a>
-					<a href="#"><i class="fa fa-github"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
 
-				</div>
+            </div>
 
-			</div>
+        </div>
 
-		</footer>
+    </footer>
 
-      
-    </body>
+
+</body>
+
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js" integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ==" crossorigin="anonymous"></script>
-  <script>
-        $(document).ready(function(){
-            $('#search_text').keyup(function(){
-                var name = $('#search_text').val();
-                $.ajax({
-                    type: 'post',
-                    url: "/search",
-                    data: {name: name},
-                    success: function(response)
-					{    
-                        if (response == "500"){
-                            console.log("Something went wrong!!")
-                        }
-                        else{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js"
+    integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#search_text').keyup(function () {
+            var name = $('#search_text').val();
+            $.ajax({
+                type: 'post',
+                url: "/search",
+                data: { name: name },
+                success: function (response) {
+                    if (response == "500") {
+                        console.log("Something went wrong!!")
+                    }
+                    else {
                         res = JSON.parse(response)
                         keys = Object.keys(res)
                         console.log(keys.length);
                         var convert = ""
-                        if (keys.length == 0){
+                        if (keys.length == 0) {
                             convert = "<br> No Such data is found !!!";
                         }
-                        else{
-                            for(var i=0;i<keys.length;i++){
+                        else {
+                            for (var i = 0; i < keys.length; i++) {
                                 var label = res[keys[i]][4]
-                                convert = convert +  '<br> id: '+i+' - Author: '+res[keys[i]][0]+' - Name: '+res[keys[i]][1]+' - Year: '+res[keys[i]][3]+ ' <button data-label="'+label+'" onClick = "myclick(this)"> View </button> <br> ';
+                                convert = convert + '<div class="individual-result"> <div class="result-text"> ID: ' + i + ' - Author: ' + res[keys[i]][0] + ' - Name: ' + res[keys[i]][1] + ' - Year: ' + res[keys[i]][3] + ' </div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
                             }
                         }
-                        
-						$('#result').html   (convert);
-                        }
+
+                        $('#result').html(convert);
                     }
-                });
+                }
             });
         });
-// Get the modal
-var modal = document.getElementById('id01');
+    });
+    // Get the modal
+    var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
-}
-function myclick(data)
-{    
-    var Label_name = data.getAttribute("data-label");
-    console.log(Label_name);
-    url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
-    $.ajax({
-                    type: 'post',
-                    url: "/get_file",
-                    data: {name: Label_name},
-                    success: function(response)
-					{    
-                        //res = JSON.parse(response)
-                        //keys = Object.keys(res)
-                        if (response == "500"){
-                        console.log("Data Not Found");
-                        }
-                        else{
-                              url = response;  
-                              console.log(url);
-                             
-                        }
-                        document.getElementById("frame").src="https://docs.google.com/gview?url="+url+"&embedded=true";
-	                    document.getElementById("id01").style.display="block";
-                    }
-                });
-          
-            
-    
+    function myclick(data) {
+        var Label_name = data.getAttribute("data-label");
+        console.log(Label_name);
+        url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
+        $.ajax({
+            type: 'post',
+            url: "/get_file",
+            data: { name: Label_name },
+            success: function (response) {
+                //res = JSON.parse(response)
+                //keys = Object.keys(res)
+                if (response == "500") {
+                    console.log("Data Not Found");
+                }
+                else {
+                    url = response;
+                    console.log(url);
 
-}	
-</script>		
+                }
+                document.getElementById("frame").src = "https://docs.google.com/gview?url=" + url + "&embedded=true";
+                document.getElementById("id01").style.display = "block";
+            }
+        });
+
+
+
+
+    }	
+</script>
