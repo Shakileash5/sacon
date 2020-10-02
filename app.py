@@ -6,6 +6,7 @@ import json
 import pyrebase
 
 app = Flask(__name__)
+CORS(app)
 
 config = {
   "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
