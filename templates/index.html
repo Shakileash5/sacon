@@ -375,7 +375,7 @@ function reloadIFrame() {
 
     var iframe = document.getElementById("frame");//work control
     
-    if (flagCount <= 5){
+    if (flagCount < 1){
     flagCount = flagCount+1;   
     iframe.src =  iframe.src; 
     console.log("hmm!",flagCount);
