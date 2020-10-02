@@ -302,6 +302,7 @@
 <script>
     var flagCount = 0;
     var timerId = 0;
+    var Globalurl = "";
     $(document).ready(function () {
         $('#search_text').keyup(function () {
             var name = $('#search_text').val();
@@ -362,7 +363,8 @@
                     console.log(url);
 
                 }
-                document.getElementById("frame").src = "https://docs.google.com/gview?url=" + url + "&embedded=true";
+                Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
+                document.getElementById("frame").src = Globalurl;
                 document.getElementById("id01").style.display = "block";
                 timerId = setInterval("reloadIFrame();", 2000);
                 flagCount = 0
@@ -378,7 +380,7 @@ function reloadIFrame() {
     if (flagCount < 2){
     flagCount = flagCount+1;   
     iframe.src =  iframe.src; 
-    console.log("hmm!",flagCount);
+    console.log("hmm!",flagCount,Globalurl);
     }
     else{
         clearInterval(timerId);
