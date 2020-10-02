@@ -406,13 +406,12 @@ function reloadIFrame() {
 
     var iframe = document.getElementById("frame");//work control
     
-    if (flagCount < 1){
+    if (iframe.contentWindow.length == 0){
     flagCount = flagCount+1;  
-    iframe.src = iframe.src; 
-    
+    iframe.src = iframe.src;
     var wrapper = document.getElementById("frame-wraper");
                 var frame = document.getElementById("frame");
-                //wrapper.removeChild(frame);
+                wrapper.removeChild(frame);
                 var iframe = document.createElement('iframe');
                 iframe.id = "frame";
                 iframe.class = "responsive-iframe";
@@ -422,7 +421,9 @@ function reloadIFrame() {
                 iframe.style = "position:absolute; top:0; left: 0";
                 iframe.allowFullscreen = true;
                 iframe.frameBorder = "1";
-               // wrapper.appendChild(iframe);
+                wrapper.appendChild(iframe); 
+    
+    
     console.log("hmm!",flagCount,Globalurl,iframe.src);
     }
     else{
