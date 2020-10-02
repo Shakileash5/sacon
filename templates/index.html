@@ -365,6 +365,9 @@
                 }
                 Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
                 document.getElementById("frame").src = Globalurl;
+                //$(".container").find("iframe").remove();
+                //var iframe = $('<iframe class="responsive-iframe" width="100%" height="100%" src="' + Globalurl + '" frameborder="1" id="frame" frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>');
+                 //$(".container").append(iframe);
                 document.getElementById("id01").style.display = "block";
                 timerId = setInterval("reloadIFrame();", 2000);
                 flagCount = 0
@@ -373,14 +376,25 @@
 
     }
 
+    
+
+    //<iframe class="responsive-iframe" width="100%" height="100%"
+      ///          src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
+         ///       allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>
+
+
+
+
+
 function reloadIFrame() {
 
     var iframe = document.getElementById("frame");//work control
     
     if (flagCount < 2){
     flagCount = flagCount+1;   
-    iframe.reload(true); 
-    console.log("hmm!",flagCount,Globalurl);
+    //iframe.src = iframe.src; 
+    $('#frame').attr('src', $('iframe').attr('src'));
+    console.log("hmm!",flagCount,Globalurl,iframe.src);
     }
     else{
         clearInterval(timerId);
