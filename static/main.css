@@ -227,7 +227,7 @@ body {
     display: flex;
     padding: 20px;
     margin-top: 18px;
-    border-radius: 12px;
+    border-radius: 12px ;
     position: relative;
 }
 .search-result:hover {
