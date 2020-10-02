@@ -300,6 +300,8 @@
     integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
     crossorigin="anonymous"></script>
 <script>
+    var flagCount = 0;
+    var timerId = 0;
     $(document).ready(function () {
         $('#search_text').keyup(function () {
             var name = $('#search_text').val();
@@ -362,11 +364,30 @@
                 }
                 document.getElementById("frame").src = "https://docs.google.com/gview?url=" + url + "&embedded=true";
                 document.getElementById("id01").style.display = "block";
+                timerId = setInterval("reloadIFrame();", 2000);
+                flagCount = 0
             }
         });
 
+    }
 
+function reloadIFrame() {
 
+    var iframe = document.getElementById("frame");//work control
+    
+    if (flagCount <= 5){
+    flagCount = flagCount+1;   
+    iframe.src =  iframe.src; 
+    console.log("hmm!",flagCount);
+    }
+    else{
+        clearInterval(timerId);
+    }
+}
+    $('frame').on('load', function() {
+        clearInterval(timerId);
 
-    }	
+        console.log("Finally Loaded"); //work control
+    });
+
 </script>
