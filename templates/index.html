@@ -199,7 +199,7 @@
         </div>
 
         <div class="container"
-            style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;">
+            style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;" id="frame-wraper">
             <iframe class="responsive-iframe" width="100%" height="100%"
                 src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
                 allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>
@@ -367,7 +367,20 @@
                 }
                 Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
                 document.getElementById("frame").src = Globalurl;
-                
+                var wrapper = document.getElementById("frame-wraper");
+                var frame = document.getElementById("frame");
+                wrapper.removeChild(frame);
+                var iframe = document.createElement('iframe');
+                iframe.id = "frame";
+                iframe.class = "responsive-iframe";
+                iframe.width = "100%";
+                iframe.height = "100%";
+                iframe.src = Globalurl;
+                iframe.style = "position:absolute; top:0; left: 0";
+                iframe.allowFullscreen = true;
+                iframe.frameBorder = "1";
+                wrapper.appendChild(iframe);
+
                 //$(".container").find("iframe").remove();
                 //var iframe = $('<iframe class="responsive-iframe" width="100%" height="100%" src="' + Globalurl + '" frameborder="1" id="frame" frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>');
                  //$(".container").append(iframe);
@@ -393,23 +406,35 @@ function reloadIFrame() {
 
     var iframe = document.getElementById("frame");//work control
     
-    if (flagCount < 2){
+    if (flagCount < 1){
     flagCount = flagCount+1;  
-    iframe.contentWindow.location.href = iframe.src; 
-    //iframe.src = iframe.src; 
-    //$('#frame').attr('src',"" );
-    //$('#frame').attr('src', Globalurl);
-//    document.getElementById('frame').src += '';
+    iframe.src = iframe.src; 
+    
+    var wrapper = document.getElementById("frame-wraper");
+                var frame = document.getElementById("frame");
+                //wrapper.removeChild(frame);
+                var iframe = document.createElement('iframe');
+                iframe.id = "frame";
+                iframe.class = "responsive-iframe";
+                iframe.width = "100%";
+                iframe.height = "100%";
+                iframe.src = Globalurl;
+                iframe.style = "position:absolute; top:0; left: 0";
+                iframe.allowFullscreen = true;
+                iframe.frameBorder = "1";
+               // wrapper.appendChild(iframe);
     console.log("hmm!",flagCount,Globalurl,iframe.src);
     }
     else{
         clearInterval(timerId);
     }
 }
-    $('frame').on('load', function() {
-        clearInterval(timerId);
+    function lad() {
+        //clearInterval(timerId);
 
         console.log("Finally Loaded"); //work control
-    });
+    }
+
+    
 
 </script>
