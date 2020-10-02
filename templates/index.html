@@ -379,7 +379,7 @@ function reloadIFrame() {
     
     if (flagCount < 2){
     flagCount = flagCount+1;   
-    iframe.src =  iframe.src; 
+    iframe.reload(true); 
     console.log("hmm!",flagCount,Globalurl);
     }
     else{
