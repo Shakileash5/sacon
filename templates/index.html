@@ -198,11 +198,17 @@
                 title="Close Modal">&times;</span>
         </div>
 
-        <div class="container"
-            style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;" id="frame-wraper">
+        <div class="container" style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;" id="frame-wraper">
             <iframe class="responsive-iframe" width="100%" height="100%"
                 src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
-                allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>
+                allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen>
+            </iframe>
+
+            <div class="d-flex justify-content-center" style="display: none;color:#c1461a;padding-top: 40%;" id = "spinner">
+                <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -267,9 +273,6 @@
                 <i class="fa fa-phone"></i>
                 <a href="tel:0422-2203127">0422-2203127</a>
             </div>
-
-
-
         </div>
 
         <div class="footer-right">
@@ -296,13 +299,17 @@
 </body>
 
 </html>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js"
     integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+</script>
+
 <script>
     var flagCount = 0;
     var timerId = 0;
     var Globalurl = "";
+    var pallet = ["#9C0404","#774023","#93DBE9"]
     
     $(document).ready(function () {
         $('#search_text').keyup(function () {
@@ -349,27 +356,27 @@
         var Label_name = data.getAttribute("data-label");
         console.log(Label_name);
         url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
-       // $('#frame').attr('src',"" );
         $.ajax({
             type: 'post',
             url: "/get_file",
             data: { name: Label_name },
             success: function (response) {
-                //res = JSON.parse(response)
-                //keys = Object.keys(res)
+
                 if (response == "500") {
                     console.log("Data Not Found");
                 }
                 else {
                     url = response;
                     console.log(url);
-
                 }
+
                 Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
                 document.getElementById("frame").src = Globalurl;
                 var wrapper = document.getElementById("frame-wraper");
                 var frame = document.getElementById("frame");
+
                 wrapper.removeChild(frame);
+
                 var iframe = document.createElement('iframe');
                 iframe.id = "frame";
                 iframe.class = "responsive-iframe";
@@ -379,63 +386,57 @@
                 iframe.style = "position:absolute; top:0; left: 0";
                 iframe.allowFullscreen = true;
                 iframe.frameBorder = "1";
+
                 wrapper.appendChild(iframe);
 
-                //$(".container").find("iframe").remove();
-                //var iframe = $('<iframe class="responsive-iframe" width="100%" height="100%" src="' + Globalurl + '" frameborder="1" id="frame" frameborder="0" allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>');
-                 //$(".container").append(iframe);
                 document.getElementById("id01").style.display = "block";
                 timerId = setInterval("reloadIFrame();", 2000);
-                flagCount = 0
+                
             }
         });
 
     }
 
-    
+    function reloadIFrame() {
 
-    //<iframe class="responsive-iframe" width="100%" height="100%"
-      ///          src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
-         ///       allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen></iframe>
+        var iframe = document.getElementById("frame");//work control
+        var spinner = document.getElementById("spinner");
+        
+        if (iframe.contentWindow.length == 0){
 
+            spinner.style.display = "block";
+            if (pallet.length>0){
+                spinner.style.color = pallet.pop();  
 
+            }
+            else{
+                pallet = ["#9C0404","#774023","#93DBE9"];
+            }
 
-
-
-function reloadIFrame() {
-
-    var iframe = document.getElementById("frame");//work control
-    
-    if (iframe.contentWindow.length == 0){
-    flagCount = flagCount+1;  
-    iframe.src = iframe.src;
-    var wrapper = document.getElementById("frame-wraper");
-                var frame = document.getElementById("frame");
-                wrapper.removeChild(frame);
-                var iframe = document.createElement('iframe');
-                iframe.id = "frame";
-                iframe.class = "responsive-iframe";
-                iframe.width = "100%";
-                iframe.height = "100%";
-                iframe.src = Globalurl;
-                iframe.style = "position:absolute; top:0; left: 0";
-                iframe.allowFullscreen = true;
-                iframe.frameBorder = "1";
-                wrapper.appendChild(iframe); 
-    
-    
-    console.log("hmm!",flagCount,Globalurl,iframe.src);
+            flagCount = flagCount+1;  
+            iframe.src = iframe.src;
+            var wrapper = document.getElementById("frame-wraper");
+            var frame = document.getElementById("frame");
+            wrapper.removeChild(frame);
+            var iframe = document.createElement('iframe');
+            iframe.id = "frame";
+            iframe.class = "responsive-iframe";
+            iframe.width = "100%";
+            iframe.height = "100%";
+            iframe.src = Globalurl;
+            iframe.style = "position:absolute; top:0; left: 0";
+            iframe.allowFullscreen = true;
+            iframe.frameBorder = "1";
+            wrapper.appendChild(iframe); 
+        
+        
+            console.log("hmm!",flagCount,Globalurl,iframe.src);
+        }
+        else{
+            spinner.style.display = "none";
+            pallet = ["#9C0404","#774023","#93DBE9"]
+            clearInterval(timerId);
+        }
     }
-    else{
-        clearInterval(timerId);
-    }
-}
-    function lad() {
-        //clearInterval(timerId);
-
-        console.log("Finally Loaded"); //work control
-    }
-
-    
 
 </script>
