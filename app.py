@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify,url_for,redirect
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import os
@@ -20,6 +20,7 @@ db = firebase.database()
 value = dict(db.child("thesis_data").get().val())
 keys = value.keys()
 storage = firebase.storage()
+auth = firebase.auth()
 
 @app.route("/")
 def index():
@@ -30,8 +31,31 @@ def index():
     return render_template("index.html")
 
 @app.route("/admin")
+def admin_login():
+    return render_template("admin_login.html")
+
+
+@app.route("/login",methods=["GET","POST"])
+def login():
+    if request.method == "POST":
+        data = dict(request.form)
+        print(data)
+        name = data["Uname"]
+        password = data["Password"]
+        
+        try:
+            login = dict(auth.sign_in_with_email_and_password(name, password))
+            print(login)
+            genres = request.json
+            return jsonify({'redirect': url_for("admin", path=genres)})
+        except:
+            return "Something Wrong!!"
+
+@app.route("/admin_call",methods=["GET","POST"])
 def admin():
+    print("val")
     return render_template("admin.html")
+
 
 
 @app.route("/search",methods = ["GET","POST"])
