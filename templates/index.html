@@ -193,7 +193,12 @@
         </div>
     </div>
     <div id="id01" class="modal">
-        <div style="background-color:rgb(205, 234, 243)">
+        <div style="background-color:rgb(39, 42, 43)">
+            <span class="down" >
+                <a href="https://html5.tutorials24x7.com/uploads/2019-03-23/banner/banner.jpg" id="download" download>
+                    <i class="fa fa-download"></i>
+                </a>
+            </span>
             <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
         </div>
@@ -369,6 +374,9 @@
                     url = response;
                     console.log(url);
                 }
+
+                download = document.getElementById("download");
+                download.href = "https://html5.tutorials24x7.com/uploads/2019-03-23/banner/banner.jpg";
 
                 Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
                 document.getElementById("frame").src = Globalurl;

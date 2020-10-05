@@ -30,7 +30,7 @@ data = {"Author": "E. V. Abdulla", "Year": "2006","University":"Farook College",
 #db.child("thesis_data").push(data)
 
 val = dict(db.child("thesis_data").get().val())
-print(val)
+#print(val)
 keys = val.keys()
 
 
@@ -38,6 +38,10 @@ keys = val.keys()
 #value = dict(db.child("thesis_data").get().val())
 #print(value)
 storage = firebase.storage()
+myfile = storage.child("TD-000104.pdf")
+url = myfile.get_url(None)
+durl = myfile.get_url("a2ed4099-d8a3-4966-887f-da303739ab49")
+print(url,durl)
 #myfile = storage.child("TD-000104.pdf")
 #url = myfile.get_url(None)
 #print(url)
