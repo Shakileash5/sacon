@@ -51,11 +51,17 @@ def login():
         except:
             return "Something Wrong!!"
 
+
 @app.route("/admin_call",methods=["GET","POST"])
 def admin():
-    print("val")
-    return render_template("admin.html")
-
+    print("val",request.referrer)
+    if request.referrer is None:
+        return render_template("admin_login.html")
+    if "/admin" in request.referrer:
+        print("allowed!!")
+        return render_template("admin.html")
+    else:
+        return render_template("admin_login.html")    
 
 
 @app.route("/search",methods = ["GET","POST"])
@@ -141,10 +147,11 @@ def upload_file():
       for i in range(keys):
         keywords.remove("")   
 
-      data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"]}             
+      data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"],
+      "Academic department":form["department"],"No. of pages":form["pages"],"Accesion number":form["Anum"],"Call number":form["number"],"Abstract":form["Abstract"],"URL":form["url"],"Author Address":form["Email"]}             
       extention = ffile.filename.split(".")[-1]
       print(data)
-      if extention != "pdf":
+      if extention not in ["pdf","docx"]:
           return '500'
       else:
         ffile.save(secure_filename(ffile.filename))  
@@ -160,6 +167,7 @@ def upload_file():
                 db.child("thesis_data").child(key).update(data)
                 flag = 1
         if flag == 0:
+            pass
             db.child("thesis_data").push(data) 
         return render_template("admin.html")
 
