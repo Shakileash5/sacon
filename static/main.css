@@ -227,7 +227,7 @@ body {
     display: flex;
     padding: 20px;
     margin-top: 18px;
-    border-radius: 12px ;
+    border-radius: 12px;
     position: relative;
 }
 .search-result:hover {
@@ -333,4 +333,107 @@ input[type="text"]:focus {
     right: 0;
     width: 100%;
     height: 100%;
+}
+
+@media (max-width: 600px) {
+    .admin-form-container {
+        width: 80% !important;
+    }
+}
+
+.admin-form-container {
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+    transition: 0.3s;
+    width: 50%;
+    border-radius: 6px;
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-username {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #cb5a30;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.admin-password {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    border: 1px solid #cb5a30;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.admin-login-btn,
+.submit-upload-form {
+    height: 30px;
+    width: 150px;
+    border-radius: 5px;
+    margin: auto;
+    background-color: white;
+    color: black;
+    border: 2px solid #008cba;
+    margin-bottom: 30px;
+}
+
+.admin-login-btn:hover,
+.submit-upload-form:hover {
+    transition-duration: 0.4s;
+    background-color: #008cba;
+    color: white;
+}
+
+.admin-login-header {
+    font-size: 20px;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.upload-form {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 25px;
+}
+
+.upload-form-header {
+    font-size: 18px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: 300;
+}
+
+.admin-upload-header {
+    font-size: 25px;
+    padding-bottom: 30px;
+}
+
+.upload-form-textarea {
+    width: 70%;
+    height: 100px;
+    border: 2px solid #cb5a30;
+    border-radius: 4px;
+    padding-bottom: 10px;
+}
+
+.upload-file {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
 }

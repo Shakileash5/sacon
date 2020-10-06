@@ -42,48 +42,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
     <style>
-        
-@media only screen and (max-width: 600px) {
-    .view-button {
-        width: 20% !important;
-    }
-}
-.view-button {
-    width: 85px;
-    border-radius: 12px;
-    border: none;
-    right: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-    background: #bbdefb;
-    position: absolute;
-}
-.individual-result {
-    display: flex;
-    padding: 20px;
-    margin-top: 18px;
-    border-radius: 12px ;
-    position: relative;
-}
-.search-result:hover {
-    box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.1);
-}
-.result-text {
-    width: 80%;
-}
-.search-result {
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-    color: white;
-    width: 100%;
-    border-radius: 10px;
-    margin: 0 auto;
-    padding-top: 150px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 50px;
-    padding-bottom: 150px;
-}
+        @media only screen and (max-width: 600px) {
+            .view-button {
+                width: 20% !important;
+            }
+        }
+
+        .view-button {
+            width: 85px;
+            border-radius: 12px;
+            border: none;
+            right: 0;
+            margin-left: 10px;
+            margin-right: 10px;
+            background: #bbdefb;
+            position: absolute;
+        }
+
+        .individual-result {
+            display: flex;
+            padding: 20px;
+            margin-top: 18px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .search-result:hover {
+            box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .result-text {
+            width: 80%;
+        }
+
+        .search-result {
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            color: white;
+            width: 100%;
+            border-radius: 10px;
+            margin: 0 auto;
+            padding-top: 150px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 50px;
+            padding-bottom: 150px;
+        }
     </style>
 
 
@@ -97,7 +101,7 @@
         </div>
 
         <nav class="navbar  navbar-expand-md navbar-dark bg-success" style="padding-top: 0%;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="https://www.sacon.in/">
                 SACON
             </a>
 
@@ -108,11 +112,11 @@
 
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <!-- <li class="nav-item active">
                         <a class="nav-link" href="https://www.sacon.in/">Home
                             <span class="sr-only">(current)</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
@@ -174,7 +178,7 @@
             </div>
         </div>
 
-        <div  style="box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+        <div style="box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
         transition: 0.3s;
         color: white;
         width: 100%;
@@ -198,13 +202,16 @@
                 title="Close Modal">&times;</span>
         </div>
 
-        <div class="container" style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;" id="frame-wraper">
+        <div class="container"
+            style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;"
+            id="frame-wraper">
             <iframe class="responsive-iframe" width="100%" height="100%"
                 src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
                 allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen>
             </iframe>
 
-            <div class="d-flex justify-content-center" style="display: none;color:#c1461a;padding-top: 40%;" id = "spinner">
+            <div class="d-flex justify-content-center" style="display: none;color:#c1461a;padding-top: 40%;"
+                id="spinner">
                 <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -303,14 +310,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js"
     integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
     crossorigin="anonymous">
-</script>
+    </script>
 
 <script>
     var flagCount = 0;
     var timerId = 0;
     var Globalurl = "";
-    var pallet = ["#9C0404","#774023","#93DBE9"]
-    
+    var pallet = ["#9C0404", "#774023", "#93DBE9"]
+
     $(document).ready(function () {
         $('#search_text').keyup(function () {
             var name = $('#search_text').val();
@@ -391,7 +398,7 @@
 
                 document.getElementById("id01").style.display = "block";
                 timerId = setInterval("reloadIFrame();", 2000);
-                
+
             }
         });
 
@@ -401,19 +408,19 @@
 
         var iframe = document.getElementById("frame");//work control
         var spinner = document.getElementById("spinner");
-        
-        if (iframe.contentWindow.length == 0){
+
+        if (iframe.contentWindow.length == 0) {
 
             spinner.style.display = "block";
-            if (pallet.length>0){
-                spinner.style.color = pallet.pop();  
+            if (pallet.length > 0) {
+                spinner.style.color = pallet.pop();
 
             }
-            else{
-                pallet = ["#9C0404","#774023","#93DBE9"];
+            else {
+                pallet = ["#9C0404", "#774023", "#93DBE9"];
             }
 
-            flagCount = flagCount+1;  
+            flagCount = flagCount + 1;
             iframe.src = iframe.src;
             var wrapper = document.getElementById("frame-wraper");
             var frame = document.getElementById("frame");
@@ -427,14 +434,14 @@
             iframe.style = "position:absolute; top:0; left: 0";
             iframe.allowFullscreen = true;
             iframe.frameBorder = "1";
-            wrapper.appendChild(iframe); 
-        
-        
-            console.log("hmm!",flagCount,Globalurl,iframe.src);
+            wrapper.appendChild(iframe);
+
+
+            console.log("hmm!", flagCount, Globalurl, iframe.src);
         }
-        else{
+        else {
             spinner.style.display = "none";
-            pallet = ["#9C0404","#774023","#93DBE9"]
+            pallet = ["#9C0404", "#774023", "#93DBE9"]
             clearInterval(timerId);
         }
     }
