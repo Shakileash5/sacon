@@ -1,106 +1,97 @@
-
 <!doctype html>
 <html>
-    <head>
-	<title>Sacon - Search</title>
-     <link rel="icon" href="http://www.sacon.in/wp-content/uploads/2017/05/cropped-saconlogo-small-32x32.png"
+
+<head>
+    <title>Sacon - Search</title>
+    <link rel="icon" href="http://www.sacon.in/wp-content/uploads/2017/05/cropped-saconlogo-small-32x32.png"
         sizes="32x32">
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
-     <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		
-	 <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
-	
-	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-	 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </head>
-    <body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
-        <form action = "http://localhost:5000/upload" method = "POST" enctype = "multipart/form-data">
-            <label for="Author">Author name:</label><br>
-            <input type="text" name="Author" value="John"><br>
-            <label for="Title">Title:</label><br>
-            <input type="text" name="Title" value="Doe"><br>
-            <label for="Year">Year:</label><br>
-            <input type="text" name="Year" ><br>
-            <label for="Type">Type:</label><br>
-            <input type="text" name="Type" ><br>
-            <label for="University">University:</label><br>
-            <input type="text" name="University" ><br>
-            <label for="Academic department">Academic department:</label><br>
-            <input type="text" name="department" ><br>
-            <label for="pages">No. of pages:</label><br>
-            <input type="text" name="pages" ><br>
-            <label for="Anum">Accesion number:</label><br>
-            <input type="text" name="Anum" ><br>
-            <label for="num">Call number:</label><br>
-            <input type="text" name="number" ><br>
-            <label for="abs">Abstract:</label><br>
-            <input type="text" name="Abstract" ><br>
-            <label for="url">URL:</label><br>
-            <input type="text" name="url" ><br>
-            <label for="Email">Author Address(Email):</label><br>
-            <input type="text" name="Email" ><br>
+<body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
+    <div class="upload-form">
+        <div class="admin-upload-header">
+            Upload Thesis
+        </div>
+        <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
+            <label for="Author" class="upload-form-header">Author name:</label><br>
+            <input type="text" name="Author"><br>
+            <label for="Title" class="upload-form-header">Title:</label><br>
+            <input type="text" name="Title"><br>
+            <label for="Year" class="upload-form-header">Year:</label><br>
+            <input type="text" name="Year"><br>
+            <label for="Type" class="upload-form-header">Type:</label><br>
+            <input type="text" name="Type"><br>
+            <label for="University" class="upload-form-header">University:</label><br>
+            <input type="text" name="University"><br>
+            <label for="Keywords" class="upload-form-header">Keywords:</label><br>
+            <textarea name="Keywords" class="upload-form-textarea" rows="10" cols="30">
+
+            </textarea>
+            <input type="file" class="upload-file button" name="file" />
+            <input type="submit" class="submit-upload-form" />
+        </form>
+    </div>
 
 
+</body>
 
-            <label for="Keywords">Keywords:</label><br>
-            <textarea name="Keywords" rows="10" cols="30">
-                bird,water,bulbul,
-            </textarea>   
-            <input type = "file" name = "file" />
-            <input  type = "submit"/>
-     </form>
-      
-    </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js" integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ==" crossorigin="anonymous"></script>
-  <script>
-        
-// Get the modal
-var modal = document.getElementById('id01');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.3/pdfobject.min.js"
+    integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
+    crossorigin="anonymous"></script>
+<script>
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
-}
-function myclick()
-{    
-    //var Label_name = data.getAttribute("data-label");
-    console.log("Label_name");
-    //url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
-    
+    function myclick() {
+        //var Label_name = data.getAttribute("data-label");
+        console.log("Label_name");
+        //url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
 
-}	
-</script>		
+
+    }	
+</script>
