@@ -41,6 +41,15 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
+    <style>
+        #error{
+            color: #D6A614;
+            display: none;
+            padding-left:33%;
+            padding-bottom: 5%;
+        }
+    </style>
+
 </head>
 
 <body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
@@ -52,6 +61,7 @@
                 placeholder="Password">
             <input type="button" onclick="myclick()" class="fadeIn fourth admin-login-btn" value="Log In">
         </form>
+        <span id="error" >Username did not match with password!!</span>
     </div>
 </body>
 
@@ -71,7 +81,14 @@
             url: "/login",
             data: { Uname: user_name, Password: pass },
             success: function (response) {
-                window.location.href = response.redirect;
+                if (response == "400"){
+                    console.log("Username did not match with password!!")
+                    document.getElementById("error").style.display="block";
+                }
+                else{
+                    window.location.href = response.redirect;
+                }
+                
             }
         });
 

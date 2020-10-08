@@ -8,12 +8,19 @@ import pyrebase
 app = Flask(__name__)
 CORS(app)
 
-config = {
+config_ = {
   "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
   "authDomain": "sacon-250805.firebaseapp.com",
   "databaseURL": "https://sacon-250805.firebaseio.com/",
   "storageBucket": "sacon-250805.appspot.com",
   "serviceAccount": "Credentials/sacon-250805-firebase-adminsdk-cc9yo-7d68092103.json"
+}
+config = {
+  "apiKey": "AIzaSyA_DAsVDs2wNv2glJ9hE5KPMNc4tygdDf0",
+  "authDomain": "sacon-search.firebaseapp.com",
+  "databaseURL": "https://sacon-search.firebaseio.com/",
+  "storageBucket": "sacon-search.appspot.com",
+  "serviceAccount": "Credentials/sacon-search-firebase-adminsdk-yq4jc-4bc5493504.json"
 }
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
@@ -49,7 +56,8 @@ def login():
             genres = request.json
             return jsonify({'redirect': url_for("admin", path=genres)})
         except:
-            return "Something Wrong!!"
+            #print("fe")
+            return "400"
 
 
 @app.route("/admin_call",methods=["GET","POST"])
@@ -97,10 +105,12 @@ def search():
         data = {}
         i = 0
         for key in find_key:
-            data[str(i)] = [value[key]["Author"],value[key]["Title"],value[key]["Type"],value[key]["Year"],value[key]["Label"]]
+
+            data[str(i)] = [value[key]["Author"],value[key]["Title"],value[key]["Thesis type"],value[key]["Year"],value[key]["Label"]]
             i = i+1
+        print(data,type(data),"hh")
         data = json.dumps(data)    
-        print("Matched data's are:::",data)    
+        print("Matched data value's are:::",data)    
         return data
     except:
             return "500"
@@ -111,13 +121,7 @@ def get_file():
         data = dict(request.form)
         find = data["name"]
         try:
-            #label_split = find.split("-")
-            #label_split[1] = "0" + label_split[1] + ".pdf"
-            #label = ("-").join(label_split)
-            #print(label)
             label = find
-            if ".pdf" not in find:
-                label = find+".pdf"
             myfile = storage.child(label)
             url = myfile.get_url(None)
             print(url)    
@@ -148,7 +152,7 @@ def upload_file():
         keywords.remove("")   
 
       data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"],
-      "Academic department":form["department"],"No. of pages":form["pages"],"Accesion number":form["Anum"],"Call number":form["number"],"Abstract":form["Abstract"],"URL":form["url"],"Author Address":form["Email"]}             
+      "Academic department":form["department"],"No of pages":form["pages"]}             
       extention = ffile.filename.split(".")[-1]
       print(data)
       if extention not in ["pdf","docx"]:
@@ -167,7 +171,6 @@ def upload_file():
                 db.child("thesis_data").child(key).update(data)
                 flag = 1
         if flag == 0:
-            pass
             db.child("thesis_data").push(data) 
         return render_template("admin.html")
 

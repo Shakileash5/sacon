@@ -337,7 +337,7 @@
                     else {
                         res = JSON.parse(response)
                         keys = Object.keys(res)
-                        console.log(keys.length);
+                        //console.log(keys.length);
                         var convert = ""
                         if (keys.length == 0) {
                             convert = "<br> No Such data is found !!!";
@@ -366,7 +366,7 @@
     }
     function myclick(data) {
         var Label_name = data.getAttribute("data-label");
-        console.log(Label_name);
+        //console.log(Label_name);
         url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
         $.ajax({
             type: 'post',
@@ -379,7 +379,7 @@
                 }
                 else {
                     url = response;
-                    console.log(url);
+                    //console.log(url);
                 }
 
                 download = document.getElementById("download");
@@ -445,7 +445,7 @@
             wrapper.appendChild(iframe);
 
 
-            console.log("hmm!", flagCount, Globalurl, iframe.src);
+            console.log("Lets Try again!", flagCount, Globalurl, iframe.src);
         }
         else {
             spinner.style.display = "none";

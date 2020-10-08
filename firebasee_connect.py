@@ -1,13 +1,22 @@
 import pyrebase
 import requests
+import json
 
-config = {
+config_ = {
   "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
   "authDomain": "sacon-250805.firebaseapp.com",
   "databaseURL": "https://sacon-250805.firebaseio.com/",
   "storageBucket": "sacon-250805.appspot.com",
   "serviceAccount": "Credentials/sacon-250805-firebase-adminsdk-cc9yo-7d68092103.json"
 }
+config = {
+  "apiKey": "AIzaSyA_DAsVDs2wNv2glJ9hE5KPMNc4tygdDf0",
+  "authDomain": "sacon-search.firebaseapp.com",
+  "databaseURL": "https://sacon-search.firebaseio.com/",
+  "storageBucket": "sacon-search.appspot.com",
+  "serviceAccount": "Credentials/sacon-search-firebase-adminsdk-yq4jc-4bc5493504.json"
+}
+
 firebase = pyrebase.initialize_app(config)
 #auth = firebase.auth()
 
@@ -25,24 +34,29 @@ keywords = ["Rails",
 "Microhabitat characteristics",
 "Breeding success"]
 
-data = {"Author": "E. V. Abdulla", "Year": "2006","University":"Farook College","Title":"Biology, ecology and behaviour of Purple Moorhen Porphyrio porphyrio","Keywords":keywords,"Label":"TD-00022","Type":"Ph.D."}
+data = {'Author': 'Singh, P.', 'Year': '2014', 'University': 'Forest Research Institute, Dehradun', 'Title': 'Study of altitudinal and geographical song variation, and interspecific interaction among Phylloscopus warblers in the Himalayas', 'Keywords': ['Leaf warblers', 'Phylloscopus xanthoschistos', 'Phylloscopus reguloides', 'Phylloscopidae', 'Western Himalayas', 'Eastern Himalaya', 'North-eastern Hills', 'Forests', 'Behavioural ecology', 'Avian vocalization', 'Competition', 'Habitat selection'], 'Label': 'TD-00010.docx', 'Type': 'Ph.D.', 'Academic department': 'Wildlife Institute of India', 'No of pages': ''}
 
-#db.child("thesis_data").push(data)
+d = json.dumps(data)
+print(d)
+db.child("thesis_data").push(data)
 
-val = dict(db.child("thesis_data").get().val())
+#val = dict(db.child("thesis_data").get().val())
 #print(val)
-keys = val.keys()
+#keys = val.keys()
 
 
 
 #value = dict(db.child("thesis_data").get().val())
 #print(value)
 storage = firebase.storage()
-myfile = storage.child("TD-000104.pdf")
-url = myfile.get_url(None)
-durl = myfile.get_url("a2ed4099-d8a3-4966-887f-da303739ab49")
-print(url,durl)
 #myfile = storage.child("TD-000104.pdf")
+#url = myfile.get_url(None)
+#durl = myfile.get_url("a2ed4099-d8a3-4966-887f-da303739ab49")
+#print(url,durl)
+
+
+
+#myfile = storage.child("TD-00001.pdf")
 #url = myfile.get_url(None)
 #print(url)
 #storage.child("TD-00171.pdf").put("TD-00171.pdf")
