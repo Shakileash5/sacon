@@ -249,6 +249,7 @@ body {
     margin-top: 50px;
     padding-bottom: 150px;
 }
+
 input[type="text"] {
     width: 130px;
     box-sizing: border-box;
@@ -265,6 +266,16 @@ input[type="text"] {
 
 input[type="text"]:focus {
     width: 100%;
+}
+
+input[type="formtext"] {
+    width: 350px;
+    box-sizing: border-box;
+    border: 1.75px solid #28a745;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
 }
 
 /* The Modal (background) */
@@ -342,11 +353,12 @@ input[type="text"]:focus {
 }
 
 .admin-form-container {
+    background-color: #ffffff;
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
     transition: 0.3s;
     width: 50%;
     border-radius: 6px;
-    margin-top: 15%;
+    margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -363,7 +375,7 @@ input[type="text"]:focus {
     margin-bottom: 30px;
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #cb5a30;
+    border: 1.75px solid #008cba;
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
@@ -374,7 +386,7 @@ input[type="text"]:focus {
     margin-right: 20px;
     margin-bottom: 30px;
     box-sizing: border-box;
-    border: 1px solid #cb5a30;
+    border: 1.75px solid #008cba;
     border-radius: 4px;
     padding: 10px;
     font-size: 16px;
@@ -383,13 +395,13 @@ input[type="text"]:focus {
 
 .admin-login-btn,
 .submit-upload-form {
-    height: 30px;
+    height: 40px;
     width: 150px;
     border-radius: 5px;
     margin: auto;
     background-color: white;
     color: black;
-    border: 2px solid #008cba;
+    border: 1px solid #008cba;
     margin-bottom: 30px;
 }
 
@@ -407,9 +419,14 @@ input[type="text"]:focus {
 }
 
 .upload-form {
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 25px;
+    background-color: #ffffff;
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 7px;
+    padding: 30px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 .upload-form-header {
@@ -427,7 +444,7 @@ input[type="text"]:focus {
 .upload-form-textarea {
     width: 70%;
     height: 100px;
-    border: 2px solid #cb5a30;
+    border: 1.75px solid #28a745;
     border-radius: 4px;
     padding-bottom: 10px;
 }

@@ -44,28 +44,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 </head>
-<body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150">
+
+<body background-color="red" data-spy="scroll" data-target="#navbar" id="los" data-offset="150"
+    style="background-color: #eee;">
+    <div id="top" style="background-color: #28a745;">
+        <image src="{{ url_for('static', filename='saconlogo.png') }}" class="img-responsive  center-block"
+            alt="Responsive image" height=80></image>
+    </div>
     <div class="upload-form">
         <div class="admin-upload-header">
             Upload Thesis
         </div>
         <form action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
             <label for="Author" class="upload-form-header">Author name:</label><br>
-            <input type="text" name="Author"><br>
+            <input type="formtext" name="Author"><br>
             <label for="Title" class="upload-form-header">Title:</label><br>
-            <input type="text" name="Title"><br>
+            <input type="formtext" name="Title"><br>
             <label for="Year" class="upload-form-header">Year:</label><br>
-            <input type="text" name="Year"><br>
+            <input type="formtext" name="Year"><br>
             <label for="Year" class="upload-form-header">Academic department:</label><br>
-            <input type="text" name="department"><br>
+            <input type="formtext" name="department"><br>
             <label for="Year" class="upload-form-header">City:</label><br>
-            <input type="text" name="City"><br>
+            <input type="formtext" name="City"><br>
             <label for="Year" class="upload-form-header">No. of pages:</label><br>
-            <input type="text" name="pages"><br>
+            <input type="formtext" name="pages"><br>
             <label for="Type" class="upload-form-header">Type:</label><br>
-            <input type="text" name="Type"><br>
+            <input type="formtext" name="Type"><br>
             <label for="University" class="upload-form-header">University:</label><br>
-            <input type="text" name="University"><br>
+            <input type="formtext" name="University"><br>
             <label for="Keywords" class="upload-form-header">Keywords:</label><br>
             <textarea name="Keywords" class="upload-form-textarea" rows="10" cols="30">
 
