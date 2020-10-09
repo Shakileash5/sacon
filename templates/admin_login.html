@@ -3,7 +3,7 @@
 
 <head>
     <title>Sacon - Search</title>
-    <link rel="icon" href="http://www.sacon.in/wp-content/uploads/2017/05/cropped-saconlogo-small-32x32.png"
+    <link rel="icon" href="{{ url_for('static', filename='cropped-saconlogo-small-32x32.png') }}"
         sizes="32x32">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,7 +60,7 @@
     </div>
     <div class="admin-form-container">
         <div class="admin-login-header">Admin Login</div>
-        <form class="admin-form">
+        <form class="admin-form" autocomplete="on">
             <input id="Uname" class="fadeIn second admin-username" name="login" placeholder="Email">
             <input type="password" id="password" class="fadeIn second admin-password" name="login"
                 placeholder="Password">
@@ -75,6 +75,41 @@
     integrity="sha512-bHO4iqeyo1tN+C4qnbroCQ5Hxi3aJcEszT0iOt2nkuXZXQf369U3PUsnoN/ebnKQ5V2iS326OIv9pgXxL+F/kQ=="
     crossorigin="anonymous"></script>
 <script>
+
+
+$(document).ready(function(){ 
+  var token = localStorage.getItem("Token");  
+  console.log(token);
+  $.post("/auto_login",{"Token":token},function(data){
+      console.log(data);
+      if (data == "200"){
+          console.log("200")
+      }
+      else{
+          post("/upload_form",{"Token":token})
+      }
+  });
+});
+
+function post(path, params, method='post') {
+     const form = document.createElement('form');
+     form.method = method;
+     form.action = path;
+
+     for (const key in params) {
+         if (params.hasOwnProperty(key)) {
+             const hiddenField = document.createElement('input');
+             hiddenField.type = 'hidden';
+             hiddenField.name = key;
+             hiddenField.value = params[key];
+
+             form.appendChild(hiddenField);
+         }
+     }
+
+     document.body.appendChild(form);
+     form.submit();
+ }
 
     function myclick() {
         var user_name = document.getElementById("Uname").value;
@@ -91,6 +126,9 @@
                     document.getElementById("error").style.display = "block";
                 }
                 else {
+                    console.log(response);
+                    localStorage.setItem("Token", response.token);
+                   
                     window.location.href = response.redirect;
                 }
 
