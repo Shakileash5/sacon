@@ -127,7 +127,7 @@ def search():
                 if isinstance(get, str) :
                     get = get.lower()
                     if find in get:
-                        print(find,get)
+                        #print(find,get)
                         if key not in find_key:
                             find_key.append(key)
                 if isinstance(get, list):
@@ -141,16 +141,16 @@ def search():
                         if key not in find_key:
                             find_key.append(key)
 
-        print("Matched data's are:::",find_key)
+        #print("Matched data's are:::",find_key)
         data = {}
         i = 0
         for key in find_key:
 
             data[str(i)] = [value[key]["Author"],value[key]["Title"],value[key]["Thesis type"],value[key]["Year"],value[key]["Label"]]
             i = i+1
-        print(data,type(data),"hh")
+        #print(data,type(data),"hh")
         data = json.dumps(data)    
-        print("Matched data value's are:::",data)    
+        #print("Matched data value's are:::",data)    
         return data
     except:
             return "500"

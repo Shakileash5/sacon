@@ -196,16 +196,17 @@
 
         </div>
     </div>
-    <div id="id01" class="modal">
-        <div style="background-color:rgb(39, 42, 43)">
-            <span class="down" >
-                <a href="https://html5.tutorials24x7.com/uploads/2019-03-23/banner/banner.jpg" id="download" download>
-                    <i class="fa fa-download"></i>
+    <div id="id01" class="modal" style="background-color:rgb(39, 42, 43,0.6);">
+        <nav class="navbar navbar-light bg-dark justify-content-between" style="top: 0;position: absolute;width: 100%;">
+            <span class="navbar-brand text-light" style="">Search Result</span>
+                <a href="" id="download" style="position: absolute;right: 55px;top: 10;" download>
+                    <i class="fa fa-download fa-3x" ></i>
                 </a>
-            </span>
-            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+              <span onclick="document.getElementById('id01').style.display='none'" class="close"
                 title="Close Modal">&times;</span>
-        </div>
+            
+          </nav>
+        
 
         <div class="container"
             style="padding-bottom:56.25%; position:relative; display:block; width: 100%;height: 100%;"
@@ -246,28 +247,6 @@
 
     </div>
     <footer class="footer-distributed" id="contact" style="margin-top:0;">
-
-        <!-- <div class="footer-left">
-
-				<h3>Company<span>logo</span></h3>
-
-				<p class="footer-links">
-					<a href="#">Home</a>
-					·
-					<a href="#">Blog</a>
-					·
-					<a href="#">Pricing</a>
-					·
-					<a href="#">About</a>
-					·
-					<a href="#">Faq</a>
-					·
-					<a href="#">Contact</a>
-				</p>
-
-				<p class="footer-company-name">SACON &copy; 2020</p>
-			</div> -->
-
         <div class="footer-center">
 
             <div>
@@ -396,6 +375,7 @@
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            clearInterval(timerId);
         }
     }
     function myclick(data) {
@@ -409,6 +389,7 @@
             success: function (response) {
 
                 if (response == "500") {
+
                     console.log("Data Not Found");
                 }
                 else {
@@ -419,7 +400,25 @@
                 download = document.getElementById("download");
                 download.href = "https://html5.tutorials24x7.com/uploads/2019-03-23/banner/banner.jpg";
 
-                Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
+                console.log(url);
+                url_split = url.split("?alt")[0]
+                file_name = url_split.split("/").pop()
+                extention = file_name.split(".")[1]
+                //console.log(extention)
+
+                if(extention == "pdf"){
+                    Globalurl = url;
+                    download.style.display = "none";
+                }
+                else if (extention == "docx"){
+                    Globalurl = "https://view.officeapps.live.com/op/embed.aspx?src=" + url ;
+                    download.href = url;
+                    download.style.display = "block";
+                }
+                else{
+                    Globalurl = "https://docs.google.com/gview?url=" + url + "&embedded=true";
+                }
+
                 document.getElementById("frame").src = Globalurl;
                 var wrapper = document.getElementById("frame-wraper");
                 var frame = document.getElementById("frame");
@@ -479,7 +478,7 @@
             wrapper.appendChild(iframe);
 
 
-            console.log("Lets Try again!", flagCount, Globalurl, iframe.src);
+            //console.log("Lets Try again!", flagCount, Globalurl, iframe.src);
         }
         else {
             spinner.style.display = "none";
