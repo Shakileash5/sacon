@@ -196,7 +196,7 @@
 
         </div>
     </div>
-    <div id="id01" class="modal" style="background-color:rgb(39, 42, 43,0.6);">
+    <div id="id01" class="modal" style="background-color:rgb(39, 42, 43,0.9);">
         <nav class="navbar navbar-light bg-dark justify-content-between" style="top: 0;position: absolute;width: 100%;">
             <span class="navbar-brand text-light" style="">Search Result</span>
                 <a href="" id="download" style="position: absolute;right: 55px;top: 10;" download>
@@ -215,13 +215,18 @@
                 src="https://www.africau.edu/images/default/sample.pdf" frameborder="1" id="frame" frameborder="0"
                 allowfullscreen="" style="position:absolute; top:0; left: 0" allowfullscreen>
             </iframe>
-
-            <div class="d-flex justify-content-center" style="display: none;color:#c1461a;padding-top: 40%;"
+            <span class="d-flex justify-content-center" style="padding-top: 40%;font-weight: bold;color:#1ac1b3;">This may take some time!!!
+            </span>
+            <div class="d-flex justify-content-center" style="display: none;color:#c1461a;padding-top: 10%;"
                 id="spinner">
+                
                 <div class="spinner-border" style="width: 6rem; height: 6rem;" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
+            <span class="d-flex justify-content-center" style="font-weight: bold;color:#1ac1b3;">
+                <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" id="open">To open in a new tab</a>
+            </span>
         </div>
 
     </div>
@@ -399,6 +404,7 @@
                 }
 
                 download = document.getElementById("download");
+                var anchor = document.getElementById("open");
 
                 //console.log(url);
                 url_split = url.split("?alt")[0]
@@ -415,7 +421,8 @@
 
                         Globalurl = url;
                     }
-                    
+
+                    anchor.href = url;
                     download.style.display = "none";
                 }
                 else if (extention == "docx"){
