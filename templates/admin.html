@@ -3,7 +3,7 @@
 
 <head>
     <title>Sacon - Search</title>
-    <link rel="icon" href="http://www.sacon.in/wp-content/uploads/2017/05/cropped-saconlogo-small-32x32.png"
+    <link rel="icon" href="{{ url_for('static', filename='cropped-saconlogo-small-32x32.png') }}"
         sizes="32x32">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,11 +17,9 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -31,10 +29,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -42,6 +40,18 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+        .navbar-nav { 
+            margin-left: auto; 
+        }
+        .nav-con{
+            color: white;
+            justify-content: center;
+            align-items: center;
+            padding-right:3rem;
+        } 
+    </style>
 
 </head>
 
@@ -51,6 +61,33 @@
         <image src="{{ url_for('static', filename='saconlogo.png') }}" class="img-responsive  center-block"
             alt="Responsive image" height=80></image>
     </div>
+    <nav class="navbar  navbar-expand-md navbar-dark bg-success" style="padding-top: 0%;">
+        <a class="navbar-brand" href="https://www.sacon.in/">
+            SACON
+        </a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end" style="padding-left: 70%;" id="navbarCollapse">
+            <ul class="navbar-nav ">
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="https://www.sacon.in/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li> -->
+                <li class="nav-item nav-con" >
+                    <span >Welcome {{name}}</span>    
+                </li>
+                <li class="nav-item nav-con">
+                    <span id="logout" onclick="logout()" > Logout</span>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
     <div class="upload-form">
         <div class="admin-upload-header">
             Upload Thesis
@@ -99,11 +136,35 @@
             modal.style.display = "none";
         }
     }
-    function myclick() {
+    function logout() {
         //var Label_name = data.getAttribute("data-label");
-        console.log("Label_name");
+        
+        var item = localStorage.getItem("lastname");
+        console.log("LogOut",'{{name}}','{{token}}');
+        $.get("/logout",{"Token":'{{token}}'});
+        post("/admin");
         //url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
-
-
     }	
+
+
+
+    function post(path, params, method='post') {
+     const form = document.createElement('form');
+     form.method = method;
+     form.action = path;
+
+     for (const key in params) {
+         if (params.hasOwnProperty(key)) {
+             const hiddenField = document.createElement('input');
+             hiddenField.type = 'hidden';
+             hiddenField.name = key;
+             hiddenField.value = params[key];
+
+             form.appendChild(hiddenField);
+         }
+     }
+
+     document.body.appendChild(form);
+     form.submit();
+ }
 </script>

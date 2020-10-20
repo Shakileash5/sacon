@@ -4,17 +4,12 @@ from flask_cors import CORS
 import os
 import json
 import pyrebase
+from uuid import uuid4
 
 app = Flask(__name__)
 CORS(app)
 
-config_ = {
-  "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
-  "authDomain": "sacon-250805.firebaseapp.com",
-  "databaseURL": "https://sacon-250805.firebaseio.com/",
-  "storageBucket": "sacon-250805.appspot.com",
-  "serviceAccount": "Credentials/sacon-250805-firebase-adminsdk-cc9yo-7d68092103.json"
-}
+
 config = {
   "apiKey": "AIzaSyA_DAsVDs2wNv2glJ9hE5KPMNc4tygdDf0",
   "authDomain": "sacon-search.firebaseapp.com",
@@ -29,6 +24,9 @@ keys = value.keys()
 storage = firebase.storage()
 auth = firebase.auth()
 
+session = {}
+
+
 @app.route("/")
 def index():
     global keys,value,storage   
@@ -37,7 +35,7 @@ def index():
     storage = firebase.storage()
     return render_template("index.html")
 
-@app.route("/admin")
+@app.route("/admin",methods=["GET","POST"])
 def admin_login():
     return render_template("admin_login.html")
 
@@ -54,20 +52,62 @@ def login():
             login = dict(auth.sign_in_with_email_and_password(name, password))
             print(login)
             genres = request.json
-            return jsonify({'redirect': url_for("admin", path=genres)})
+            token = uuid4()
+            session[str(name)] = {"loggedIn":True,"Token":str(token)}
+            return jsonify({'redirect': url_for("admin", path=genres,token=token),"token":session[str(name)]["Token"]})
         except:
             #print("fe")
             return "400"
 
+@app.route("/auto_login",methods=["GET","POST"])
+def auto_login():
+    if request.method == "POST":
+        data = dict(request.form)
+        keys = session.keys()
+        print(session,data)
+        for key in keys:
+            if session[key]["Token"] == data["Token"] and session[key]["loggedIn"] == True:
+                print("Redirect")
+                return "redirect"
+        return "200"        
+
+@app.route("/upload_form",methods=["GET","POST"])
+def upload_form():
+    if request.method == "POST":
+        data = dict(request.form)
+        keys = session.keys()
+        print(session,data)
+        for key in keys:
+            if session[key]["Token"] == data["Token"]:
+                return render_template("admin.html",name = key,token = data["Token"])
+    return render_template("admin_login.html")        
+
+@app.route("/logout",methods=["GET","POST"])
+def logout():
+    if request.method == "GET":
+        data = dict(request.args)
+        print(data)
+        keys = session.keys()
+        for key in keys:
+            if session[key]["Token"] == data["Token"]:
+                del session[key]
+                print(session)
+                return "200"
 
 @app.route("/admin_call",methods=["GET","POST"])
 def admin():
     print("val",request.referrer)
     if request.referrer is None:
         return render_template("admin_login.html")
-    if "/admin" in request.referrer:
-        print("allowed!!")
-        return render_template("admin.html")
+    if "/admin" in request.referrer or "/upload_form" in request.referrer:
+        print("allowed!!",request.form,request.args )
+        data = dict(request.args)
+        name = "Admin"
+        keys = session.keys()
+        for key in keys:
+            if session[key]["Token"] == data["token"]:
+                name = key  
+        return render_template("admin.html",name = name,token=data["token"])
     else:
         return render_template("admin_login.html")    
 
@@ -87,7 +127,7 @@ def search():
                 if isinstance(get, str) :
                     get = get.lower()
                     if find in get:
-                        print(find,get)
+                        #print(find,get)
                         if key not in find_key:
                             find_key.append(key)
                 if isinstance(get, list):
@@ -101,16 +141,16 @@ def search():
                         if key not in find_key:
                             find_key.append(key)
 
-        print("Matched data's are:::",find_key)
+        #print("Matched data's are:::",find_key)
         data = {}
         i = 0
         for key in find_key:
 
             data[str(i)] = [value[key]["Author"],value[key]["Title"],value[key]["Thesis type"],value[key]["Year"],value[key]["Label"]]
             i = i+1
-        print(data,type(data),"hh")
+        #print(data,type(data),"hh")
         data = json.dumps(data)    
-        print("Matched data value's are:::",data)    
+        #print("Matched data value's are:::",data)    
         return data
     except:
             return "500"
