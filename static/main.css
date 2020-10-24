@@ -275,8 +275,13 @@ input[type="text"]:focus {
     width: 100%;
 }
 
+.logout-text{
+    margin-top: 10px;
+    color: darkred;
+}
+
 input[type="formtext"] {
-    width: 350px;
+    width: 100%;
     box-sizing: border-box;
     border: 1.75px solid #28a745;
     border-radius: 4px;
