@@ -214,6 +214,9 @@ def upload_file():
             db.child("thesis_data").push(data) 
         return render_template("admin.html")
 
+@app.route("/form")
+def form():
+    return render_template("form/basic_elements.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)),debug=True,use_reloader=True)
