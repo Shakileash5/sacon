@@ -24,18 +24,28 @@
             width: 85px;
             border-radius: 12px;
             border: none;
-            right: 0;
+            right: 90px;
             margin-left: 10px;
             margin-right: 10px;
             background: #bbdefb;
             position: absolute;
         }
-
+    .delete-button {
+            width: 85px;
+            border-radius: 12px;
+            border: none;
+            right: 0;
+            margin-left: 10px;
+            margin-right: 10px;
+            background: #bbdefb;
+            position: absolute;
+        }  
         .individual-result {
             display: flex;
             padding: 20px;
             margin-top: 18px;
             border-radius: 12px;
+            padding-right: 16%;
             position: relative;
         }
   </style>
@@ -274,42 +284,50 @@
                   <!--<p class="card-description">
                     Basic form layout
                   </p>-->
-                  <form class="forms-sample">
+                  <form class="forms-sample" action="http://localhost:5000/upload" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Author Name</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Author">
+                      <label for="Author">Author Name</label>
+                      <input type="text" class="form-control" id="Author" name="Author" placeholder="Author">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Title</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Title">
+                      <label for="Title">Title</label>
+                      <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Year</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Year">
+                      <label for="Year">Year</label>
+                      <input type="text" class="form-control" id="Year" name="Year" placeholder="Year">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Academic Department</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Academic Department">
+                      <label for="department">Academic Department</label>
+                      <input type="text" class="form-control" id="department" name="department" placeholder="Academic Department">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">City</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="City">
+                      <label for="City">City</label>
+                      <input type="text" class="form-control" id="City" name="City" placeholder="City">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">No. of Pages</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="No. of Pages">
+                      <label for="pages">No. of Pages</label>
+                      <input type="text" class="form-control" id="pages" name="pages" placeholder="No. of Pages">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Type</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Type">
+                      <label for="Type">Type</label>
+                      <input type="text" class="form-control" id="Type" name="Type" placeholder="Type">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">University</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="University">
+                      <label for="University">University</label>
+                      <input type="text" class="form-control" id="University" name="University" placeholder="University">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Keywords</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Keywords">
+                      <label for="Label">Label</label>
+                      <input type="text" class="form-control" id="Label" name="Label" placeholder="Keywords">
+                    </div>
+                    <div class="form-group">
+                      <label for="Keywords">Keywords</label>
+                      <input type="text" class="form-control" id="Keywords" name="Keywords" placeholder="Keywords">
+                    </div>
+                    <div class="form-group">
+                      <label for="File">File</label>
+                      <input type="file" class="upload-file button" name="file" />
                     </div>
                     <!--<div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>
@@ -342,62 +360,63 @@
                   <p class="card-description">
                     Result will be shown here
                   </p>
+                  
                   <span id="result-val"></span>
                 </div>
               </div>
             </div>
             <!---->
-            <!--<div class="col-12 grid-margin stretch-card">
+            <div class="col-12 grid-margin stretch-card" id = "modify_thesis" style="display: none;">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Basic form elements</h4>
-                  <p class="card-description">
-                    Basic form elements
-                  </p>
                   <form class="forms-sample">
                     <div class="form-group">
-                      <label for="exampleInputName1">Name</label>
-                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                      <label for="Author">Author Name</label>
+                      <input type="text" class="form-control" id="Author" name="Author" placeholder="Author">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail3">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                      <label for="Title">Title</label>
+                      <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword4">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                      <label for="Year">Year</label>
+                      <input type="text" class="form-control" id="Year" name="Year" placeholder="Year">
                     </div>
                     <div class="form-group">
-                      <label for="exampleSelectGender">Gender</label>
-                        <select class="form-control" id="exampleSelectGender">
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      <input type="file" name="img[]" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
+                      <label for="department">Academic Department</label>
+                      <input type="text" class="form-control" id="department" name="department" placeholder="Academic Department">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputCity1">City</label>
-                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                      <label for="City">City</label>
+                      <input type="text" class="form-control" id="City" name="City" placeholder="City">
                     </div>
                     <div class="form-group">
-                      <label for="exampleTextarea1">Textarea</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                      <label for="pages">No. of Pages</label>
+                      <input type="text" class="form-control" id="pages" name="pages" placeholder="No. of Pages">
+                    </div>
+                    <div class="form-group">
+                      <label for="Type">Type</label>
+                      <input type="text" class="form-control" id="Type" name="Type" placeholder="Type">
+                    </div>
+                    <div class="form-group">
+                      <label for="University">University</label>
+                      <input type="text" class="form-control" id="University" name="University" placeholder="University">
+                    </div>
+                    <div class="form-group">
+                      <label for="Label">Label</label>
+                      <input type="text" class="form-control" id="Label" name="Label" placeholder="Keywords">
+                    </div>
+                    <div class="form-group">
+                      <label for="Keywords">Keywords</label>
+                      <input type="text" class="form-control" id="Keywords" name="Keywords" placeholder="Keywords">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
               </div>
-            </div>-->
+            </div>
             <!--<div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -897,7 +916,8 @@
             console.log("keyup");
             
             document.getElementById("result").style.display="block";
-            document.getElementById("upload_thesis").style.display="none";
+            document.getElementById("upload_thesis").style.display="none"; 
+            document.getElementById("modify_thesis").style.display="none";
             $.ajax({
                 type: 'post',
                 url: "/search",
@@ -916,33 +936,63 @@
                         }
                         else {
                             for (var i = 0; i < keys.length; i++) {
-                                var label = res[keys[i]][4]
-                                convert = convert + '<div class="individual-result"> <div class="result-text"> ID: ' + i + ' - Author: ' + res[keys[i]][0] + ' - Name: ' + res[keys[i]][1] + ' - Year: ' + res[keys[i]][3] + ' </div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> modify </button> </div>';
+                                var key = res[keys[i]][10]
+                                convert = convert + '<div class="individual-result"> <div class="result-text">' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + ' </div> <button class="view-button" data-label="' + key + '" onClick = "update(this)"> modify </button> <button class="delete-button " data-label="' + key + '" onClick = "update(this)"> delete </button></div>';
                             }
                         }
-
                         $('#result-val').html(convert);
                     }
                 }
             });
         });
-
-
-
-
   });
+
+  function update(data) {
+        var key = data.getAttribute("data-label");
+        console.log(key);
+        $.ajax({
+                type: 'get',
+                url: "/get_thesis",
+                data: { key: key },
+                success: function (response) {
+                    if (response == "500") {
+                        console.log("Something went wrong!!")
+                    }
+                    else {
+                        res = JSON.parse(response);
+                        console.log(res);
+                        document.getElementById("result").style.display="none";
+                        document.getElementById("upload_thesis").style.display="none";
+                        document.getElementById("modify_thesis").style.display="block";
+                        document.getElementById("Author").value = res[0];
+                        document.getElementById("Year").value = res[1];
+                        document.getElementById("Title").value = res[2];
+                        document.getElementById("department").value = res[3];
+                        document.getElementById("City").value = res[4];
+                        document.getElementById("University").value = res[5];
+                        document.getElementById("pages").value = res[6];
+                        document.getElementById("Type").value = res[7];
+                        document.getElementById("Label").value = res[8];
+                        document.getElementById("Keywords").value = res[9];
+                    }    
+                  } 
+        });  
+  }
+
 
 
   function modify(){
     console.log("clicked");
     document.getElementById("result").style.display="block";
-    document.getElementById("upload_thesis").style.display="none";
+    document.getElementById("upload_thesis").style.display="none"; 
+    document.getElementById("modify_thesis").style.display="none";
   }
   
   function upload_thesis(){
     console.log("clicled")
     document.getElementById("upload_thesis").style.display="block";
-    document.getElementById("result").style.display="none";
+    document.getElementById("result").style.display="none"; 
+    document.getElementById("modify_thesis").style.display="none";
   }
 
 </script>

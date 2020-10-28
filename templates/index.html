@@ -328,8 +328,8 @@
                         }
                         else {
                             for (var i = 0; i < keys.length; i++) {
-                                var label = res[keys[i]][4]
-                                convert = convert + '<div class="individual-result"> <div class="result-text"> ID: ' + i + ' - Author: ' + res[keys[i]][0] + ' - Name: ' + res[keys[i]][1] + ' - Year: ' + res[keys[i]][3] + ' </div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
+                                var label = res[keys[i]][8]
+                                convert = convert + '<div class="individual-result"> <div class="result-text">  ' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + '</div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
                             }
                         }
 
@@ -357,20 +357,15 @@
                         }
                         else {
                             for (var i = 0; i < keys.length; i++) {
-                                var label = res[keys[i]][4]
-                                convert = convert + '<div class="individual-result"> <div class="result-text"> ID: ' + i + ' - Author: ' + res[keys[i]][0] + ' - Name: ' + res[keys[i]][1] + ' - Year: ' + res[keys[i]][3] + ' </div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
+                                var label = res[keys[i]][8]
+                                convert = convert + '<div class="individual-result"> <div class="result-text"> ' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + '</div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
                             }
                         }
 
                         $('#result').html(convert);
                     }
                 }
-            });   
-
-
-
-    
-    
+            });       
     
     });
     // Get the modal

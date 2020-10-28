@@ -144,11 +144,15 @@ def search():
         #print("Matched data's are:::",find_key)
         data = {}
         i = 0
+        print("debug:::")
         for key in find_key:
-
-            data[str(i)] = [value[key]["Author"],value[key]["Title"],value[key]["Thesis type"],value[key]["Year"],value[key]["Label"]]
+            print(value[key],value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"])
+            data[str(i)] = [value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'],key]
             i = i+1
+            
         #print(data,type(data),"hh")
+        print(value[key],value[key]["Author"],value[key]["Year"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'])
+        print(value[key]['Keywords'])
         data = json.dumps(data)    
         #print("Matched data value's are:::",data)    
         return data
@@ -168,6 +172,18 @@ def get_file():
             return url
         except:
             return "500"   
+
+@app.route("/get_thesis", methods = ["GET","POST"])
+def get_thesis():
+    if request.method == "GET":
+        try:
+            key = dict(request.args)["key"]
+            print("The key ::",key)
+            data = [value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'],key]
+            data = json.dumps(data) 
+            return data
+        except:    
+            return "500"
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():
@@ -190,8 +206,13 @@ def upload_file():
       
       for i in range(keys):
         keywords.remove("")   
+      i = 0
+      for key in form.keys():
+          if len(form[key]) == 0:
+              print("fw")
+              form[key] = "__"
 
-      data = {"Author": form["Author"], "Year":form["Year"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Type":form["Type"],
+      data = {"Author": form["Author"], "Year":form["Year"],"City":form["City"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Thesis type":form["Type"],
       "Academic department":form["department"],"No of pages":form["pages"]}             
       extention = ffile.filename.split(".")[-1]
       print(data)
@@ -199,8 +220,15 @@ def upload_file():
           return '500'
       else:
         ffile.save(secure_filename(ffile.filename))  
-        storage.child(ffile.filename).put(ffile.filename)
-        os.remove(ffile.filename) 
+        filename = ffile.filename.split('.')
+        filename[0] = filename[0].replace(" ","_")
+        filename = '.'.join(filename)
+        data["Label"] = filename
+        print(filename,"modified")             
+        print("::::file_uploading::::",filename,"_file name")
+        storage.child(filename).put(filename)
+        print("::::file_uploaded::::")
+        os.remove(filename) 
         val = dict(db.child("thesis_data").get().val())
         print("recieved")
         keys = val.keys() 
