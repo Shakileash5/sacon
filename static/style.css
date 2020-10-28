@@ -19795,6 +19795,30 @@ code {
 .badge.badge-pill {
   border-radius: 10rem;
 }
+@media only screen and (max-width: 600px) {
+  .view-button {
+      width: 20% !important;
+  }
+}
+
+.view-button {
+  width: 85px;
+  border-radius: 12px;
+  border: none;
+  right: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #bbdefb;
+  position: absolute;
+}
+
+.individual-result {
+  display: flex;
+  padding: 20px;
+  margin-top: 18px;
+  border-radius: 12px;
+  position: relative;
+}
 
 /*Badge outlined variations*/
 .badge-outline-primary {

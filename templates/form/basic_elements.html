@@ -18,6 +18,28 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='cropped-saconlogo-small-32x32.png') }}" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <style>
+    .view-button {
+            width: 85px;
+            border-radius: 12px;
+            border: none;
+            right: 0;
+            margin-left: 10px;
+            margin-right: 10px;
+            background: #bbdefb;
+            position: absolute;
+        }
+
+        .individual-result {
+            display: flex;
+            padding: 20px;
+            margin-top: 18px;
+            border-radius: 12px;
+            position: relative;
+        }
+  </style>
+
 </head>
 
 <body>
@@ -316,11 +338,11 @@
             <div class="col-md-12 grid-margin stretch-card" id="result" style="display: none;">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Horizontal Form</h4>
+                  <h4 class="card-title">Thesis Results</h4>
                   <p class="card-description">
-                    Horizontal form layout
+                    Result will be shown here
                   </p>
-                  <span>Result will be shown here</span>
+                  <span id="result-val"></span>
                 </div>
               </div>
             </div>
@@ -867,6 +889,49 @@
   <!-- End custom js for this page-->
 </body>
 <script>
+
+  $(document).ready(function () {
+
+    $('#search-thesis').keyup(function () {
+            var name = $('#search-thesis').val();
+            console.log("keyup");
+            
+            document.getElementById("result").style.display="block";
+            document.getElementById("upload_thesis").style.display="none";
+            $.ajax({
+                type: 'post',
+                url: "/search",
+                data: { name: name },
+                success: function (response) {
+                    if (response == "500") {
+                        console.log("Something went wrong!!")
+                    }
+                    else {
+                        res = JSON.parse(response)
+                        keys = Object.keys(res)
+                        //console.log(keys.length);
+                        var convert = ""
+                        if (keys.length == 0) {
+                            convert = "<br> No Such data is found !!!";
+                        }
+                        else {
+                            for (var i = 0; i < keys.length; i++) {
+                                var label = res[keys[i]][4]
+                                convert = convert + '<div class="individual-result"> <div class="result-text"> ID: ' + i + ' - Author: ' + res[keys[i]][0] + ' - Name: ' + res[keys[i]][1] + ' - Year: ' + res[keys[i]][3] + ' </div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> modify </button> </div>';
+                            }
+                        }
+
+                        $('#result-val').html(convert);
+                    }
+                }
+            });
+        });
+
+
+
+
+  });
+
 
   function modify(){
     console.log("clicked");
