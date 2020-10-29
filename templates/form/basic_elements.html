@@ -389,46 +389,42 @@
 <script>
 
   $(document).ready(function () {
-    console.log('{{token}}',"Token",'{{update}}')
-    isupdated = '{{update}}'
-    isuploaded = '{{upload}}'
+    isupdated = '{{update}}';
+    isuploaded = '{{upload}}';
     document.getElementById("loader_div").style.display="none";
     document.getElementById("tokenu").value = '{{token}}';
+
     if(isupdated==1){
-      console.log("yes");
       document.getElementById("toast_div").style.display="block";
       setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
     }
     if(isupdated==2){
       document.getElementById("toast_div_failure").style.display="block";
-      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
+      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!";
       setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
     }
     if(isupdated==3){
       document.getElementById("toast_div_error").style.display="block";
-      document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+      document.getElementById("toast_text_error").innerHTML = "Internal server error!";
       setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
     }
     if(isuploaded==1){
-      console.log("yes");
       document.getElementById("toast_div").style.display="block";
-      document.getElementById("toast_text").innerHTML = "Data is Uploaded!"
+      document.getElementById("toast_text").innerHTML = "Data is Uploaded!";
       setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
     }
     if(isuploaded==2){
       document.getElementById("toast_div_failure").style.display="block";
-      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
+      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!";
       setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
     }
     if(isuploaded==3){
       document.getElementById("toast_div_error").style.display="block";
-      document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+      document.getElementById("toast_text_error").innerHTML = "Internal server error!";
       setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
     }
     $('#search-thesis').keyup(function () {
             var name = $('#search-thesis').val();
-            console.log("keyup");
-            
             document.getElementById("result").style.display="block";
             document.getElementById("upload_thesis").style.display="none"; 
             document.getElementById("modify_thesis").style.display="none";
@@ -442,7 +438,7 @@
                         document.getElementById("loader_div").style.display="none";
                         document.getElementById("result").style.display="none";
                         document.getElementById("toast_div_error").style.display="block";
-                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!";
                         setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
                         document.getElementById("upload_thesis").style.display="block";
                     }
@@ -480,7 +476,7 @@
                         document.getElementById("loader_div").style.display="none";
                         document.getElementById("result").style.display="none";
                         document.getElementById("toast_div_error").style.display="block";
-                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!";
                         setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
                         document.getElementById("upload_thesis").style.display="block";
                     }
@@ -503,7 +499,6 @@
                         document.getElementById("KeywordsU").value = res[9];
                         document.getElementById("keyv").value = key;
                         document.getElementById("token").value = '{{token}}';
-                        console.log("dw");
                         
                     }    
                   } 
@@ -512,7 +507,6 @@
 
   function delete_thesis(data){
     var key = data.getAttribute("data-label");
-    console.log(key);
     $.ajax({
                 type: 'post',
                 url: "/delete_thesis",
@@ -523,19 +517,17 @@
                         document.getElementById("loader_div").style.display="none";
                         document.getElementById("result").style.display="none";
                         document.getElementById("toast_div_error").style.display="block";
-                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!";
                         setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
                         document.getElementById("upload_thesis").style.display="block";
                     }
                     else {
                         res = JSON.parse(response);
-                        console.log(res);
                         document.getElementById("loader_div").style.display="none";
                         document.getElementById("toast_div").style.display="block";
                         document.getElementById("toast_text").innerHTML="Data is deleted!";
                         setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
                         document.getElementById("upload_thesis").style.display="block";
-                        console.log("dw");
                         
                     }    
                   } 
@@ -574,7 +566,6 @@
         //var Label_name = data.getAttribute("data-label");
         
         var item = localStorage.getItem("lastname");
-        console.log("LogOut",'{{name}}','{{token}}');
         $.get("/logout",{"Token":'{{token}}'});
         post("/admin");
         //url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
