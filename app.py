@@ -61,6 +61,7 @@ def login():
         except:
             #print("fe")
             return "400"
+    return redirect(url_for("admin_login"))         
 
 @app.route("/auto_login",methods=["GET","POST"])
 def auto_login():
@@ -73,6 +74,7 @@ def auto_login():
                 print("Redirect")
                 return "redirect"
         return "200"        
+    return redirect(url_for("admin_login")) 
 
 @app.route("/upload_form",methods=["GET","POST"])
 def upload_form():
@@ -84,7 +86,7 @@ def upload_form():
             if session[key]["Token"] == data["Token"]:
                 #return render_template("admin.html",name = key,token = data["Token"])
                 return render_template("form/basic_elements.html",name = key,token = data["Token"])
-    return render_template("admin_login.html")        
+    return redirect(url_for("admin_login"))        
 
 @app.route("/logout",methods=["GET","POST"])
 def logout():
@@ -97,6 +99,7 @@ def logout():
                 del session[key]
                 print(session)
                 return "200"
+    return redirect(url_for("admin_login")) 
 
 @app.route("/admin_call",methods=["GET","POST"])
 def admin():
@@ -115,7 +118,7 @@ def admin():
         #return render_template("admin.html",name = name,token=data["token"])
         return render_template("form/basic_elements.html",name = name,token=data["token"])
     else:
-        return render_template("admin_login.html")    
+        return redirect(url_for("admin_login"))    
 
 
 @app.route("/search",methods = ["GET","POST"])
@@ -179,6 +182,7 @@ def get_file():
         except:
             return "500"   
 
+
 @app.route("/get_thesis", methods = ["GET","POST"])
 def get_thesis():
     if request.method == "GET":
@@ -190,6 +194,7 @@ def get_thesis():
             return data
         except:    
             return "500"
+    return redirect(url_for("admin_login"))
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():
@@ -222,31 +227,36 @@ def upload_file():
       "Academic department":form["department"],"No of pages":form["pages"]}             
       extention = ffile.filename.split(".")[-1]
       print(data)
+      token = form["token"]
       if extention not in ["pdf","docx"]:
-          return '500'
+          return render_template("form/basic_elements.html",token=token,upload="2")
       else:
-        ffile.save(secure_filename(ffile.filename))  
-        filename = ffile.filename.split('.')
-        filename[0] = filename[0].replace(" ","_")
-        filename = '.'.join(filename)
-        data["Label"] = filename
-        print(filename,"modified")             
-        print("::::file_uploading::::",filename,"_file name")
-        storage.child(filename).put(filename)
-        print("::::file_uploaded::::")
-        os.remove(filename) 
-        val = dict(db.child("thesis_data").get().val())
-        print("recieved")
-        keys = val.keys() 
-        flag = 0
-        for key in keys:
-            if val[key]["Title"] == data["Title"]:
-                print(key)
-                db.child("thesis_data").child(key).update(data)
-                flag = 1
-        if flag == 0:
-            db.child("thesis_data").push(data) 
-        return render_template("admin.html")
+        try:
+            ffile.save(secure_filename(ffile.filename))  
+            filename = ffile.filename.split('.')
+            filename[0] = filename[0].replace(" ","_")
+            filename = '.'.join(filename)
+            data["Label"] = filename
+            print(filename,"modified")             
+            print("::::file_uploading::::",filename,"_file name")
+            storage.child(filename).put(filename)
+            print("::::file_uploaded::::")
+            os.remove(filename) 
+            val = dict(db.child("thesis_data").get().val())
+            print("recieved")
+            keys = val.keys() 
+            flag = 0
+            for key in keys:
+                if val[key]["Title"] == data["Title"]:
+                    print(key)
+                    db.child("thesis_data").child(key).update(data)
+                    flag = 1
+            if flag == 0:
+                db.child("thesis_data").push(data) 
+            return render_template("form/basic_elements.html",token=token,upload="1")
+        except:
+            return render_template("form/basic_elements.html",token=token,upload="3")   
+   return redirect(url_for("admin_login"))        
 
 @app.route("/update",methods=["GET","POST"])
 def update():
@@ -257,9 +267,11 @@ def update():
         if len(ffile.filename) == 0:
             print("Empty")
         else:
+            token = data["token"]
+            del data["token"]
             extention = ffile.filename.split(".")[-1]  
             if extention not in ["pdf","docx"]:
-                return '500' 
+                return render_template("form/basic_elements.html",token=token,update="2") 
             else:
                 ffile.save(secure_filename(ffile.filename))  
                 filename = ffile.filename.split('.')
@@ -269,27 +281,33 @@ def update():
                 data["Label"] = filename
                 storage.child(filename).put(filename)
                 os.remove(filename) 
-                    
-        key = data["keyv"]
-        del data["keyv"]
-        token = data["token"]
-        del data["token"]
-        db.child("thesis_data").child(key).update(data)
-        return render_template("form/basic_elements.html",token=token,update="1")
+        try:            
+            key = data["keyv"]
+            del data["keyv"]
+            
+            db.child("thesis_data").child(key).update(data)
+            return render_template("form/basic_elements.html",token=token,update="1")
+        except: 
+            return render_template("form/basic_elements.html",token=token,update="3")   
         #return render_template("form/basic_elements.html")
+    
+    return redirect(url_for("admin_login"))
 
 @app.route("/delete_thesis",methods=["GET","POST"])
 def delete_thesis():
     if request.method == "POST":
-        data = dict(request.form)
-        key = data["key"]
-        print(key)
-        label = value[key]["Label"]
-        db.child("thesis_data").child(key).remove()
-        storage.delete(label)
-        load_data()
-        return "200"
-
+        try:
+            data = dict(request.form)
+            key = data["key"]
+            print(key)
+            label = value[key]["Label"]
+            db.child("thesis_data").child(key).remove()
+            storage.delete(label)
+            load_data()
+            return "200"
+        except:
+            return "500"    
+    return redirect(url_for("admin_login"))
 
 @app.route("/form")
 def form():

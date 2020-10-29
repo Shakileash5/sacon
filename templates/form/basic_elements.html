@@ -321,6 +321,7 @@
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
+
             <div class="col-md-6 grid-margin stretch-card" id="toast_div" style="display: none;">
               <div class="card">
                 <div class="card-body">
@@ -334,6 +335,22 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-md-6 grid-margin stretch-card" id="toast_div_failure" style="display: none;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Oops!</h4>
+                  <div class="row">
+                    <i class="fa fa-times-circle" style="position: absolute;font-size:48px;color:rgb(233, 29, 29);left:80%;top:35%;padding-bottom: 2%;"></i>
+                  </div>
+                  <div class="row">
+                      <span id="toast_text_failure"style="margin-bottom: 3%;padding-left: 0.5rem;" >Something went wrong!!</span>  
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
             <div class="col-md-12 grid-margin stretch-card" id="upload_thesis" style="display:block;">
               <div class="card">
                 <div class="card-body">
@@ -385,6 +402,10 @@
                     <div class="form-group">
                       <label for="File">File</label>
                       <input type="file" class="upload-file button" name="file" />
+                    </div>
+                    <div class="form-group" style="display: none;">
+                      <label for="token">Token</label>
+                      <input type="text" class="form-control" value = '{{token}}' id="tokenu" name="token" placeholder="..">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" onclick="submin_upload()">Submit</button>
                     <button class="btn btn-light">Cancel</button>
@@ -459,7 +480,7 @@
                       <input type="text" class="form-control" id="keyv" name="keyv" placeholder="..">
                     </div>
                     <div class="form-group" style="display: none;">
-                      <label for="token">Key</label>
+                      <label for="token">Token</label>
                       <input type="text" class="form-control" id="token" name="token" placeholder="..">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2" onclick="checkdata()">Submit</button>
@@ -958,10 +979,29 @@
   $(document).ready(function () {
     console.log('{{token}}',"Token",'{{update}}')
     isupdated = '{{update}}'
+    isuploaded = '{{upload}}'
+    
+    document.getElementById("tokenu").value = '{{token}}';
     if(isupdated==1){
       console.log("yes");
       document.getElementById("toast_div").style.display="block";
       setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
+    }
+    if(isupdated==2){
+      document.getElementById("toast_div_failure").style.display="block";
+      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
+      setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
+    }
+    if(isuploaded==1){
+      console.log("yes");
+      document.getElementById("toast_div").style.display="block";
+      document.getElementById("toast_text").innerHTML = "Data is Uploaded!"
+      setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
+    }
+    if(isuploaded==2){
+      document.getElementById("toast_div_failure").style.display="block";
+      document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
+      setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
     }
     $('#search-thesis').keyup(function () {
             var name = $('#search-thesis').val();
@@ -1046,6 +1086,7 @@
                 success: function (response) {
                     if (response == "500") {
                         console.log("Something went wrong!!")
+                        
                     }
                     else {
                         res = JSON.parse(response);
