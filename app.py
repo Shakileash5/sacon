@@ -57,6 +57,7 @@ def login():
             token = uuid4()
             session[str(name)] = {"loggedIn":True,"Token":str(token)}
             return jsonify({'redirect': url_for("admin", path=genres,token=token),"token":session[str(name)]["Token"]})
+            #return jsonify({'redirect': url_for("form", path=genres,token=token),"token":session[str(name)]["Token"]})
         except:
             #print("fe")
             return "400"
@@ -78,17 +79,18 @@ def upload_form():
     if request.method == "POST":
         data = dict(request.form)
         keys = session.keys()
-        print(session,data)
+        print(session,data,"upload_form")
         for key in keys:
             if session[key]["Token"] == data["Token"]:
-                return render_template("admin.html",name = key,token = data["Token"])
+                #return render_template("admin.html",name = key,token = data["Token"])
+                return render_template("form/basic_elements.html",name = key,token = data["Token"])
     return render_template("admin_login.html")        
 
 @app.route("/logout",methods=["GET","POST"])
 def logout():
     if request.method == "GET":
         data = dict(request.args)
-        print(data)
+        print(data,"----logout")
         keys = session.keys()
         for key in keys:
             if session[key]["Token"] == data["Token"]:
@@ -109,7 +111,9 @@ def admin():
         for key in keys:
             if session[key]["Token"] == data["token"]:
                 name = key  
-        return render_template("admin.html",name = name,token=data["token"])
+        print("this in admin call",data)        
+        #return render_template("admin.html",name = name,token=data["token"])
+        return render_template("form/basic_elements.html",name = name,token=data["token"])
     else:
         return render_template("admin_login.html")    
 
@@ -268,9 +272,12 @@ def update():
                     
         key = data["keyv"]
         del data["keyv"]
+        token = data["token"]
+        del data["token"]
         db.child("thesis_data").child(key).update(data)
-        return redirect(url_for('form'))
+        return render_template("form/basic_elements.html",token=token,update="1")
         #return render_template("form/basic_elements.html")
+
 @app.route("/delete_thesis",methods=["GET","POST"])
 def delete_thesis():
     if request.method == "POST":

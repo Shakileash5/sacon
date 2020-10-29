@@ -48,6 +48,50 @@
             padding-right: 16%;
             position: relative;
         }
+        #loader {
+            position: absolute;
+            left: 75%;
+            top: 40%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+          position: relative;
+          -webkit-animation-name: animatebottom;
+          -webkit-animation-duration: 1s;
+          animation-name: animatebottom;
+          animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+          from { bottom:-100px; opacity:0 } 
+          to { bottom:0px; opacity:1 }
+        }
+
+        @keyframes animatebottom { 
+          from{ bottom:-100px; opacity:0 } 
+          to{ bottom:0; opacity:1 }
+        }
   </style>
 
 </head>
@@ -184,7 +228,7 @@
               <span class="nav-profile-name ">Divya Priya</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" onclick="logout()">
                 <i class="fa fa-sign-out"></i>
                 Logout
               </a>
@@ -235,9 +279,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="#" onclick="logout()">
               <i class="fa fa-user-circle menu-icon"></i>
-              <span class="menu-title">Log out</span>
+              <span class="menu-title" >Log out</span>
             </a>
           </li>
           <!--
@@ -277,6 +321,19 @@
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
+            <div class="col-md-6 grid-margin stretch-card" id="toast_div" style="display: none;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Awesome!</h4>
+                  <div class="row">
+                    <i class="fa fa-check-circle" style="position: absolute;font-size:48px;color:rgb(110, 233, 29);left:80%;top:35%;padding-bottom: 2%;"></i>
+                  </div>
+                  <div class="row">
+                      <span id="toast_text"style="margin-bottom: 3%;padding-left: 0.5rem;" >The Data is uploaded!!</span>  
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="col-md-12 grid-margin stretch-card" id="upload_thesis" style="display:block;">
               <div class="card">
                 <div class="card-body">
@@ -329,25 +386,7 @@
                       <label for="File">File</label>
                       <input type="file" class="upload-file button" name="file" />
                     </div>
-                    <!--<div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                      <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check form-check-flat form-check-primary">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Remember me
-                      </label>
-                    </div>-->
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-2" onclick="submin_upload()">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
@@ -419,34 +458,32 @@
                       <label for="key">Key</label>
                       <input type="text" class="form-control" id="keyv" name="keyv" placeholder="..">
                     </div>
+                    <div class="form-group" style="display: none;">
+                      <label for="token">Key</label>
+                      <input type="text" class="form-control" id="token" name="token" placeholder="..">
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2" onclick="checkdata()">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
               </div>
             </div>
-            <!--<div class="col-md-6 grid-margin stretch-card">
+
+            <div class="col-md-4 grid-margin stretch-card" id="loader_div" style="display: none;">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Input size</h4>
-                  <p class="card-description">
-                    Add classes like <code>.form-control-lg</code> and <code>.form-control-sm</code>.
-                  </p>
-                  <div class="form-group">
-                    <label>Large input</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username">
+                  <div class="row">
+                      <div id="loader"></div>
+                      <span id="loader_text" style="margin-bottom: 3%;padding-left: 3%;">The Data is uploading!!</span>
                   </div>
-                  <div class="form-group">
-                    <label>Default input</label>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                  </div>
-                  <div class="form-group">
-                    <label>Small input</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Username" aria-label="Username">
+                  <div class="row">
+                      <span style="margin-bottom: 3%;padding-left: 3%;">Please wait few Moments!!</span>
                   </div>
                 </div>
               </div>
             </div>
+            <!--
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -914,11 +951,18 @@
   <!-- Custom js for this page-->
   <!--<script src="../../js/file-upload.js"></script>-->
   <!-- End custom js for this page-->
+  
 </body>
 <script>
 
   $(document).ready(function () {
-
+    console.log('{{token}}',"Token",'{{update}}')
+    isupdated = '{{update}}'
+    if(isupdated==1){
+      console.log("yes");
+      document.getElementById("toast_div").style.display="block";
+      setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
+    }
     $('#search-thesis').keyup(function () {
             var name = $('#search-thesis').val();
             console.log("keyup");
@@ -984,6 +1028,7 @@
                         document.getElementById("LabelU").value = res[8];
                         document.getElementById("KeywordsU").value = res[9];
                         document.getElementById("keyv").value = key;
+                        document.getElementById("token").value = '{{token}}';
                         console.log("dw");
                         
                     }    
@@ -1005,34 +1050,74 @@
                     else {
                         res = JSON.parse(response);
                         console.log(res);
+                        document.getElementById("loader_div").style.display="none";
+                        document.getElementById("toast_div").style.display="block";
+                        document.getElementById("toast_text").innerHTML="Data is deleted!";
+                        setTimeout(function(){ document.getElementById("toast_div").style.display="none";console.log("see_this"); }, 3000);
+                        document.getElementById("upload_thesis").style.display="block";
                         console.log("dw");
                         
                     }    
                   } 
         }); 
+    document.getElementById("loader_div").style.display="block";
+    document.getElementById("loader_text").innerHTML = "Cleaning Data!!"
+    document.getElementById("result").style.display="none";    
     //document.getElementById("upload_data").click();
     
   }
 
   function checkdata(){
-    console.log("There");
+    document.getElementById("loader_div").style.display="block";
+    document.getElementById("loader_text").innerHTML = "Data is Updating!!"
+    document.getElementById("modify_thesis").style.display="none";
+  }
+  function submin_upload(){
+    document.getElementById("loader_div").style.display="block";
+    document.getElementById("loader_text").innerHTML = "Data is Uploading!!"
+    document.getElementById("upload_thesis").style.display="none";
   }
 
   function modify(){
-    console.log("clicked");
     document.getElementById("result").style.display="block";
     document.getElementById("upload_thesis").style.display="none"; 
     document.getElementById("modify_thesis").style.display="none";
   }
   
   function upload_thesis(){
-    console.log("clicled")
     document.getElementById("upload_thesis").style.display="block";
     document.getElementById("result").style.display="none"; 
     document.getElementById("modify_thesis").style.display="none";
   }
 
+  function logout() {
+        //var Label_name = data.getAttribute("data-label");
+        
+        var item = localStorage.getItem("lastname");
+        console.log("LogOut",'{{name}}','{{token}}');
+        $.get("/logout",{"Token":'{{token}}'});
+        post("/admin");
+        //url = "https://firebasestorage.googleapis.com/v0/b/sacon-250805.appspot.com/o/TD-000005.pdf?alt=media";
+    }
+
+  function post(path, params, method='post') {
+     const form = document.createElement('form');
+     form.method = method;
+     form.action = path;
+
+     for (const key in params) {
+         if (params.hasOwnProperty(key)) {
+             const hiddenField = document.createElement('input');
+             hiddenField.type = 'hidden';
+             hiddenField.name = key;
+             hiddenField.value = params[key];
+
+             form.appendChild(hiddenField);
+         }
+     }
+
+     document.body.appendChild(form);
+     form.submit();
+  }
 </script>
-
-
 </html>
