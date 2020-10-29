@@ -102,8 +102,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="#"><p class="sample-logo" style="font-size:32px;">Sacon</p></a>
-          <a class="navbar-brand brand-logo-mini" href="#"><p class="sample-logo" style="font-size:32px;">Sacon</p></a>
+          <a class="navbar-brand brand-logo" href="#"><p class="sample-logo" style="font-size:32px;">SACON</p></a>
+          <a class="navbar-brand brand-logo-mini" href="#"><p class="sample-logo" style="font-size:32px;">SACON</p></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="fa fa-bars"></span>
           </button>
@@ -281,7 +281,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="logout()">
               <i class="fa fa-user-circle menu-icon"></i>
-              <span class="menu-title" >Log out</span>
+              <span class="menu-title" >Logout</span>
             </a>
           </li>
           <!--
@@ -350,6 +350,19 @@
               </div>
             </div>
 
+            <div class="col-md-6 grid-margin stretch-card" id="toast_div_error" style="display: none;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Oops!</h4>
+                  <div class="row">
+                    <i class="fa fa-exclamation-triangle" style="position: absolute;font-size:48px;color:rgb(255, 196, 0);left:80%;top:35%;padding-bottom: 2%;"></i>
+                  </div>
+                  <div class="row">
+                      <span id="toast_text_error"style="margin-bottom: 3%;padding-left: 0.5rem;" >Something went wrong!!</span>  
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="col-md-12 grid-margin stretch-card" id="upload_thesis" style="display:block;">
               <div class="card">
@@ -390,10 +403,6 @@
                     <div class="form-group">
                       <label for="University">University</label>
                       <input type="text" class="form-control" id="University" name="University" placeholder="University">
-                    </div>
-                    <div class="form-group">
-                      <label for="Label">Label</label>
-                      <input type="text" class="form-control" id="Label" name="Label" placeholder="Keywords">
                     </div>
                     <div class="form-group">
                       <label for="Keywords">Keywords</label>
@@ -493,7 +502,7 @@
             <div class="col-md-4 grid-margin stretch-card" id="loader_div" style="display: none;">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Input size</h4>
+                  <h4 class="card-title">Status</h4>
                   <div class="row">
                       <div id="loader"></div>
                       <span id="loader_text" style="margin-bottom: 3%;padding-left: 3%;">The Data is uploading!!</span>
@@ -980,7 +989,7 @@
     console.log('{{token}}',"Token",'{{update}}')
     isupdated = '{{update}}'
     isuploaded = '{{upload}}'
-    
+    document.getElementById("loader_div").style.display="none";
     document.getElementById("tokenu").value = '{{token}}';
     if(isupdated==1){
       console.log("yes");
@@ -992,6 +1001,11 @@
       document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
       setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
     }
+    if(isupdated==3){
+      document.getElementById("toast_div_error").style.display="block";
+      document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+      setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+    }
     if(isuploaded==1){
       console.log("yes");
       document.getElementById("toast_div").style.display="block";
@@ -1002,6 +1016,11 @@
       document.getElementById("toast_div_failure").style.display="block";
       document.getElementById("toast_text_failure").innerHTML = "please upload pdf or docx format file!"
       setTimeout(function(){ document.getElementById("toast_div_failure").style.display="none"; }, 3000);
+    }
+    if(isuploaded==3){
+      document.getElementById("toast_div_error").style.display="block";
+      document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+      setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
     }
     $('#search-thesis').keyup(function () {
             var name = $('#search-thesis').val();
@@ -1016,7 +1035,13 @@
                 data: { name: name },
                 success: function (response) {
                     if (response == "500") {
-                        console.log("Something went wrong!!")
+                        console.log("Something went wrong!!");
+                        document.getElementById("loader_div").style.display="none";
+                        document.getElementById("result").style.display="none";
+                        document.getElementById("toast_div_error").style.display="block";
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+                        document.getElementById("upload_thesis").style.display="block";
                     }
                     else {
                         res = JSON.parse(response)
@@ -1048,7 +1073,13 @@
                 data: { key: key },
                 success: function (response) {
                     if (response == "500") {
-                        console.log("Something went wrong!!")
+                        console.log("Something went wrong!!");
+                        document.getElementById("loader_div").style.display="none";
+                        document.getElementById("result").style.display="none";
+                        document.getElementById("toast_div_error").style.display="block";
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+                        document.getElementById("upload_thesis").style.display="block";
                     }
                     else {
                         res = JSON.parse(response);
@@ -1085,8 +1116,13 @@
                 data: { key: key },
                 success: function (response) {
                     if (response == "500") {
-                        console.log("Something went wrong!!")
-                        
+                        console.log("Something went wrong!!");
+                        document.getElementById("loader_div").style.display="none";
+                        document.getElementById("result").style.display="none";
+                        document.getElementById("toast_div_error").style.display="block";
+                        document.getElementById("toast_text_error").innerHTML = "Internal server error!"
+                        setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+                        document.getElementById("upload_thesis").style.display="block";
                     }
                     else {
                         res = JSON.parse(response);

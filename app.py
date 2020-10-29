@@ -5,6 +5,7 @@ import os
 import json
 import pyrebase
 from uuid import uuid4
+import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -46,13 +47,11 @@ def admin_login():
 def login():
     if request.method == "POST":
         data = dict(request.form)
-        print(data)
         name = data["Uname"]
         password = data["Password"]
         
         try:
             login = dict(auth.sign_in_with_email_and_password(name, password))
-            print(login)
             genres = request.json
             token = uuid4()
             session[str(name)] = {"loggedIn":True,"Token":str(token)}
@@ -71,7 +70,6 @@ def auto_login():
         print(session,data)
         for key in keys:
             if session[key]["Token"] == data["Token"] and session[key]["loggedIn"] == True:
-                print("Redirect")
                 return "redirect"
         return "200"        
     return redirect(url_for("admin_login")) 
@@ -92,12 +90,10 @@ def upload_form():
 def logout():
     if request.method == "GET":
         data = dict(request.args)
-        print(data,"----logout")
         keys = session.keys()
         for key in keys:
             if session[key]["Token"] == data["Token"]:
                 del session[key]
-                print(session)
                 return "200"
     return redirect(url_for("admin_login")) 
 
@@ -107,14 +103,12 @@ def admin():
     if request.referrer is None:
         return render_template("admin_login.html")
     if "/admin" in request.referrer or "/upload_form" in request.referrer:
-        print("allowed!!",request.form,request.args )
         data = dict(request.args)
         name = "Admin"
         keys = session.keys()
         for key in keys:
             if session[key]["Token"] == data["token"]:
-                name = key  
-        print("this in admin call",data)        
+                name = key         
         #return render_template("admin.html",name = name,token=data["token"])
         return render_template("form/basic_elements.html",name = name,token=data["token"])
     else:
@@ -130,7 +124,7 @@ def search():
     try:
         find_key = []   
         for key in keys:
-            gets = list(value[key].values())
+            gets = list(value[key].values())   
             find = find.lower()
             for get in gets:
                 if isinstance(get, str) :
@@ -138,7 +132,7 @@ def search():
                     if find in get:
                         #print(find,get)
                         if key not in find_key:
-                            find_key.append(key)
+                            find_key.append(key)                       
                 if isinstance(get, list):
                     for l in get:
                         l = l.lower()
@@ -148,24 +142,22 @@ def search():
                 if isinstance(get, int):
                     if find in str(get):
                         if key not in find_key:
-                            find_key.append(key)
-
+                            find_key.append(key)           
+    
         #print("Matched data's are:::",find_key)
         data = {}
         i = 0
         print("debug:::")
         for key in find_key:
-            print(value[key],value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"])
             data[str(i)] = [value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'],key]
             i = i+1
             
         #print(data,type(data),"hh")
-        print(value[key],value[key]["Author"],value[key]["Year"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'])
-        print(value[key]['Keywords'])
         data = json.dumps(data)    
         #print("Matched data value's are:::",data)    
         return data
     except:
+            print(sys.exc_info()[0])
             return "500"
                     
 @app.route("/get_file",methods = ["GET","POST"])
@@ -177,11 +169,10 @@ def get_file():
             label = find
             myfile = storage.child(label)
             url = myfile.get_url(None)
-            print(url)    
             return url
         except:
             return "500"   
-
+    return redirect(url_for("index"))
 
 @app.route("/get_thesis", methods = ["GET","POST"])
 def get_thesis():
@@ -201,33 +192,34 @@ def upload_file():
    if request.method == 'POST':
       ffile = request.files['file']
       form = dict(request.form)
-      print(form)
+      token = form["token"]
       keywords = form["Keywords"]
-      keywords = keywords.split(",")
-      keys = 0
-      i = 0
-      for i in range(len(keywords)):
-          if "\r" in keywords[i]:
-              keywords[i] = keywords[i].replace("\r","")
-          if "\n" in keywords[i]:
-              keywords[i] = keywords[i].replace("\n","")
-          keywords[i] = keywords[i].strip()      
-          if len(keywords[i]) == 0:
-              keys+=1
-      
-      for i in range(keys):
-        keywords.remove("")   
+      if len(keywords)==0:
+          keywords = ["Null"]
+      else:    
+            keywords = keywords.split(",")
+            keys = 0
+            i = 0
+            for i in range(len(keywords)):
+                if "\r" in keywords[i]:
+                    keywords[i] = keywords[i].replace("\r","")
+                if "\n" in keywords[i]:
+                    keywords[i] = keywords[i].replace("\n","")
+                keywords[i] = keywords[i].strip()      
+                if len(keywords[i]) == 0:
+                    keys+=1
+            
+            for i in range(keys):
+                keywords.remove("")   
       i = 0
       for key in form.keys():
           if len(form[key]) == 0:
-              print("fw")
               form[key] = "__"
 
       data = {"Author": form["Author"], "Year":form["Year"],"City":form["City"],"University":form["University"],"Title":form["Title"],"Keywords":keywords,"Label":ffile.filename,"Thesis type":form["Type"],
       "Academic department":form["department"],"No of pages":form["pages"]}             
       extention = ffile.filename.split(".")[-1]
-      print(data)
-      token = form["token"]
+      
       if extention not in ["pdf","docx"]:
           return render_template("form/basic_elements.html",token=token,upload="2")
       else:
@@ -236,9 +228,8 @@ def upload_file():
             filename = ffile.filename.split('.')
             filename[0] = filename[0].replace(" ","_")
             filename = '.'.join(filename)
-            data["Label"] = filename
-            print(filename,"modified")             
-            print("::::file_uploading::::",filename,"_file name")
+            data["Label"] = filename           
+            print("::::file_uploading::::")
             storage.child(filename).put(filename)
             print("::::file_uploaded::::")
             os.remove(filename) 
@@ -248,11 +239,11 @@ def upload_file():
             flag = 0
             for key in keys:
                 if val[key]["Title"] == data["Title"]:
-                    print(key)
                     db.child("thesis_data").child(key).update(data)
                     flag = 1
             if flag == 0:
                 db.child("thesis_data").push(data) 
+            load_data()    
             return render_template("form/basic_elements.html",token=token,upload="1")
         except:
             return render_template("form/basic_elements.html",token=token,upload="3")   
@@ -262,13 +253,13 @@ def upload_file():
 def update():
     if request.method == "POST":
         data = dict(request.form)
-        print(data)
+        token = data["token"]
+        del data["token"]
         ffile = request.files['file']
         if len(ffile.filename) == 0:
             print("Empty")
         else:
-            token = data["token"]
-            del data["token"]
+            
             extention = ffile.filename.split(".")[-1]  
             if extention not in ["pdf","docx"]:
                 return render_template("form/basic_elements.html",token=token,update="2") 
@@ -284,8 +275,8 @@ def update():
         try:            
             key = data["keyv"]
             del data["keyv"]
-            
             db.child("thesis_data").child(key).update(data)
+            load_data()
             return render_template("form/basic_elements.html",token=token,update="1")
         except: 
             return render_template("form/basic_elements.html",token=token,update="3")   
@@ -299,7 +290,6 @@ def delete_thesis():
         try:
             data = dict(request.form)
             key = data["key"]
-            print(key)
             label = value[key]["Label"]
             db.child("thesis_data").child(key).remove()
             storage.delete(label)
@@ -312,7 +302,7 @@ def delete_thesis():
 @app.route("/form")
 def form():
     load_data()
-    return render_template("form/basic_elements.html")
+    return redirect(url_for("admin_login"))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)),debug=True,use_reloader=True)
