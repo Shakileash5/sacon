@@ -222,7 +222,7 @@
           </li>
           -->
           <li class="nav-item">
-            <a class="nav-link" href="#upload_thesis" onclick="upload_thesis()">
+            <a class="nav-link" href="#upload_thesis" id = "upload_data" onclick="upload_thesis()">
               <i class="fa fa-upload menu-icon"></i>
               <span class="menu-title">Upload Data</span>
             </a>
@@ -370,48 +370,56 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Basic form elements</h4>
-                  <form class="forms-sample">
+                  <form class="forms-sample" action="http://localhost:5000/update" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="Author">Author Name</label>
-                      <input type="text" class="form-control" id="Author" name="Author" placeholder="Author">
+                      <input type="text" class="form-control" id="AuthorU" name="Author" placeholder="Author">
                     </div>
                     <div class="form-group">
                       <label for="Title">Title</label>
-                      <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
+                      <input type="text" class="form-control" id="TitleU" name="Title" placeholder="Title">
                     </div>
                     <div class="form-group">
                       <label for="Year">Year</label>
-                      <input type="text" class="form-control" id="Year" name="Year" placeholder="Year">
+                      <input type="text" class="form-control" id="YearU" name="Year" placeholder="Year">
                     </div>
                     <div class="form-group">
                       <label for="department">Academic Department</label>
-                      <input type="text" class="form-control" id="department" name="department" placeholder="Academic Department">
+                      <input type="text" class="form-control" id="departmentU" name="Academic department" placeholder="Academic Department">
                     </div>
                     <div class="form-group">
                       <label for="City">City</label>
-                      <input type="text" class="form-control" id="City" name="City" placeholder="City">
+                      <input type="text" class="form-control" id="CityU" name="City" placeholder="City">
                     </div>
                     <div class="form-group">
-                      <label for="pages">No. of Pages</label>
-                      <input type="text" class="form-control" id="pages" name="pages" placeholder="No. of Pages">
+                      <label for="No of pages">No. of Pages</label>
+                      <input type="text" class="form-control" id="pagesU" name="No of pages" placeholder="No. of Pages">
                     </div>
                     <div class="form-group">
                       <label for="Type">Type</label>
-                      <input type="text" class="form-control" id="Type" name="Type" placeholder="Type">
+                      <input type="text" class="form-control" id="TypeU" name="Thesis type" placeholder="Type">
                     </div>
                     <div class="form-group">
                       <label for="University">University</label>
-                      <input type="text" class="form-control" id="University" name="University" placeholder="University">
+                      <input type="text" class="form-control" id="UniversityU" name="University" placeholder="University">
                     </div>
                     <div class="form-group">
                       <label for="Label">Label</label>
-                      <input type="text" class="form-control" id="Label" name="Label" placeholder="Keywords">
+                      <input type="text" class="form-control" id="LabelU" name="Label" placeholder="Label" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="File">File</label>
+                      <input type="file" class="upload-file button" name="file" />
                     </div>
                     <div class="form-group">
                       <label for="Keywords">Keywords</label>
-                      <input type="text" class="form-control" id="Keywords" name="Keywords" placeholder="Keywords">
+                      <input type="text" class="form-control" id="KeywordsU" name="Keywords" placeholder="Keywords">
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <div class="form-group" style="display: none;">
+                      <label for="key">Key</label>
+                      <input type="text" class="form-control" id="keyv" name="keyv" placeholder="..">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2" onclick="checkdata()">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
@@ -937,7 +945,7 @@
                         else {
                             for (var i = 0; i < keys.length; i++) {
                                 var key = res[keys[i]][10]
-                                convert = convert + '<div class="individual-result"> <div class="result-text">' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + ' </div> <button class="view-button" data-label="' + key + '" onClick = "update(this)"> modify </button> <button class="delete-button " data-label="' + key + '" onClick = "update(this)"> delete </button></div>';
+                                convert = convert + '<div class="individual-result"> <div class="result-text">' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + ' </div> <button class="view-button" data-label="' + key + '" onClick = "update(this)"> modify </button> <button class="delete-button " data-label="' + key + '" onClick = "delete_thesis(this)"> delete </button></div>';
                             }
                         }
                         $('#result-val').html(convert);
@@ -964,22 +972,51 @@
                         document.getElementById("result").style.display="none";
                         document.getElementById("upload_thesis").style.display="none";
                         document.getElementById("modify_thesis").style.display="block";
-                        document.getElementById("Author").value = res[0];
-                        document.getElementById("Year").value = res[1];
-                        document.getElementById("Title").value = res[2];
-                        document.getElementById("department").value = res[3];
-                        document.getElementById("City").value = res[4];
-                        document.getElementById("University").value = res[5];
-                        document.getElementById("pages").value = res[6];
-                        document.getElementById("Type").value = res[7];
-                        document.getElementById("Label").value = res[8];
-                        document.getElementById("Keywords").value = res[9];
+                        
+                        document.getElementById("AuthorU").value = res[0];
+                        document.getElementById("YearU").value = res[1];
+                        document.getElementById("TitleU").value = res[2];
+                        document.getElementById("departmentU").value = res[3];
+                        document.getElementById("CityU").value = res[4];
+                        document.getElementById("UniversityU").value = res[5];
+                        document.getElementById("pagesU").value = res[6];
+                        document.getElementById("TypeU").value = res[7];
+                        document.getElementById("LabelU").value = res[8];
+                        document.getElementById("KeywordsU").value = res[9];
+                        document.getElementById("keyv").value = key;
+                        console.log("dw");
+                        
                     }    
                   } 
         });  
   }
 
+  function delete_thesis(data){
+    var key = data.getAttribute("data-label");
+    console.log(key);
+    $.ajax({
+                type: 'post',
+                url: "/delete_thesis",
+                data: { key: key },
+                success: function (response) {
+                    if (response == "500") {
+                        console.log("Something went wrong!!")
+                    }
+                    else {
+                        res = JSON.parse(response);
+                        console.log(res);
+                        console.log("dw");
+                        
+                    }    
+                  } 
+        }); 
+    //document.getElementById("upload_data").click();
+    
+  }
 
+  function checkdata(){
+    console.log("There");
+  }
 
   function modify(){
     console.log("clicked");

@@ -26,13 +26,15 @@ auth = firebase.auth()
 
 session = {}
 
-
-@app.route("/")
-def index():
+def load_data():
     global keys,value,storage   
     value = dict(db.child("thesis_data").get().val())
     keys = value.keys()
     storage = firebase.storage()
+
+@app.route("/")
+def index():
+    load_data()
     return render_template("index.html")
 
 @app.route("/admin",methods=["GET","POST"])
@@ -242,8 +244,49 @@ def upload_file():
             db.child("thesis_data").push(data) 
         return render_template("admin.html")
 
+@app.route("/update",methods=["GET","POST"])
+def update():
+    if request.method == "POST":
+        data = dict(request.form)
+        print(data)
+        ffile = request.files['file']
+        if len(ffile.filename) == 0:
+            print("Empty")
+        else:
+            extention = ffile.filename.split(".")[-1]  
+            if extention not in ["pdf","docx"]:
+                return '500' 
+            else:
+                ffile.save(secure_filename(ffile.filename))  
+                filename = ffile.filename.split('.')
+                filename[0] = filename[0].replace(" ","_")
+                filename = '.'.join(filename) 
+                storage.delete(data["Label"])
+                data["Label"] = filename
+                storage.child(filename).put(filename)
+                os.remove(filename) 
+                    
+        key = data["keyv"]
+        del data["keyv"]
+        db.child("thesis_data").child(key).update(data)
+        return redirect(url_for('form'))
+        #return render_template("form/basic_elements.html")
+@app.route("/delete_thesis",methods=["GET","POST"])
+def delete_thesis():
+    if request.method == "POST":
+        data = dict(request.form)
+        key = data["key"]
+        print(key)
+        label = value[key]["Label"]
+        db.child("thesis_data").child(key).remove()
+        storage.delete(label)
+        load_data()
+        return "200"
+
+
 @app.route("/form")
 def form():
+    load_data()
     return render_template("form/basic_elements.html")
 
 if __name__ == "__main__":
