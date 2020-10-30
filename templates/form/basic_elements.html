@@ -458,14 +458,25 @@
                         }
                         $('#result-val').html(convert);
                     }
-                }
+                },
+                error:function(){
+                  console.log("Network Failure!");
+                }  
+            }).fail(function(){
+              console.log("failed!");
+              document.getElementById("loader_div").style.display="none";
+              document.getElementById("result").style.display="none";
+              document.getElementById("toast_div_error").style.display="block";
+              document.getElementById("toast_text_error").innerHTML = "Network Failure!";
+              setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+              document.getElementById("upload_thesis").style.display="block";
             });
         });
   });
 
   function update(data) {
         var key = data.getAttribute("data-label");
-        console.log(key);
+        //console.log(key);
         $.ajax({
                 type: 'get',
                 url: "/get_thesis",
@@ -482,7 +493,7 @@
                     }
                     else {
                         res = JSON.parse(response);
-                        console.log(res);
+                        //console.log(res);
                         document.getElementById("result").style.display="none";
                         document.getElementById("upload_thesis").style.display="none";
                         document.getElementById("modify_thesis").style.display="block";
@@ -502,7 +513,15 @@
                         
                     }    
                   } 
-        });  
+        }).fail(function(){
+              console.log("failed!");
+              document.getElementById("loader_div").style.display="none";
+              document.getElementById("result").style.display="none";
+              document.getElementById("toast_div_error").style.display="block";
+              document.getElementById("toast_text_error").innerHTML = "Network Failure!";
+              setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+              document.getElementById("upload_thesis").style.display="block";
+            });  
   }
 
   function delete_thesis(data){
@@ -531,7 +550,15 @@
                         
                     }    
                   } 
-        }); 
+        }).fail(function(){
+              console.log("failed!");
+              document.getElementById("loader_div").style.display="none";
+              document.getElementById("result").style.display="none";
+              document.getElementById("toast_div_error").style.display="block";
+              document.getElementById("toast_text_error").innerHTML = "Network Failure!";
+              setTimeout(function(){ document.getElementById("toast_div_error").style.display="none"; }, 3000);
+              document.getElementById("upload_thesis").style.display="block";
+            }); 
     document.getElementById("loader_div").style.display="block";
     document.getElementById("loader_text").innerHTML = "Cleaning Data!!"
     document.getElementById("result").style.display="none";    

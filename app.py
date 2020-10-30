@@ -255,7 +255,26 @@ def update():
         data = dict(request.form)
         token = data["token"]
         del data["token"]
+        keywords = data["Keywords"]
         ffile = request.files['file']
+        if len(keywords)==0:
+          keywords = ["Null"]
+        else:    
+            keywords = keywords.split(",")
+            keys = 0
+            i = 0
+            for i in range(len(keywords)):
+                if "\r" in keywords[i]:
+                    keywords[i] = keywords[i].replace("\r","")
+                if "\n" in keywords[i]:
+                    keywords[i] = keywords[i].replace("\n","")
+                keywords[i] = keywords[i].strip()      
+                if len(keywords[i]) == 0:
+                    keys+=1
+            
+            for i in range(keys):
+                keywords.remove("")
+        data["Keywords"] = keywords       
         if len(ffile.filename) == 0:
             print("Empty")
         else:
