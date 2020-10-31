@@ -147,7 +147,7 @@ def search():
         #print("Matched data's are:::",find_key)
         data = {}
         i = 0
-        print("debug:::")
+        #print("debug:::")
         for key in find_key:
             data[str(i)] = [value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'],key]
             i = i+1

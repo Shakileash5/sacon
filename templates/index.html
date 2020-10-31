@@ -224,9 +224,7 @@
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-            <span class="d-flex justify-content-center" style="font-weight: bold;color:#1ac1b3;">
-                <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank" id="open">To open in a new tab</a>
-            </span>
+            
         </div>
 
     </div>
@@ -281,7 +279,7 @@
             <div class="footer-icons">
 
                 <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="https://twitter.com/SACONCoimbatore"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-linkedin"></i></a>
 
             </div>
@@ -398,7 +396,7 @@
                 }
 
                 download = document.getElementById("download");
-                var anchor = document.getElementById("open");
+                //var anchor = document.getElementById("open");
 
                 //console.log(url);
                 url_split = url.split("?alt")[0]
@@ -416,7 +414,7 @@
                         Globalurl = url;
                     }
 
-                    anchor.href = url;
+                    //anchor.href = url;
                     download.style.display = "none";
                 }
                 else if (extention == "docx"){
