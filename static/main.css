@@ -1,468 +1,504 @@
-html {
-    scroll-behavior: smooth;
-}
-
-.footer-distributed {
-    background-color: #292c2f;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-    box-sizing: border-box;
-    width: 100%;
-    text-align: left;
-    font: bold 16px sans-serif;
-
-    padding: 55px 50px;
-    margin-top: 80px;
-}
-
-.footer-distributed .footer-left,
-.footer-distributed .footer-center,
-.footer-distributed .footer-right {
-    display: inline-block;
-    vertical-align: top;
-}
-
-/* Footer left */
-
-.footer-distributed .footer-left {
-    width: 40%;
-}
-
-/* The company logo */
-
-.footer-distributed h3 {
-    color: #ffffff;
-    font: normal 36px "Cookie", cursive;
-    margin: 0;
-}
-
-.footer-distributed h3 span {
-    color: #5383d3;
-}
-
-/* Footer links */
-
-.footer-distributed .footer-links {
-    color: #ffffff;
-    margin: 20px 0 12px;
-    padding: 0;
-}
-
-.footer-distributed .footer-links a {
-    display: inline-block;
-    line-height: 1.8;
-    text-decoration: none;
-    color: inherit;
-}
-
-.footer-distributed .footer-company-name {
-    color: #8f9296;
-    font-size: 14px;
-    font-weight: normal;
-    margin: 0;
-}
-
-/* Footer Center */
-
-.footer-distributed .footer-center {
-    width: 60%;
-}
-
-.footer-distributed .footer-center i {
-    background-color: #33383b;
-    color: #ffffff;
-    font-size: 25px;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 42px;
-    margin: 10px 15px;
-    vertical-align: middle;
-}
-
-.footer-distributed .footer-center i.fa-envelope {
-    font-size: 17px;
-    line-height: 38px;
-}
-
-.footer-distributed .footer-center p {
-    display: inline-block;
-    color: #ffffff;
-    vertical-align: middle;
-    margin: 0;
-}
-
-.footer-distributed .footer-center p span {
-    display: block;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 2;
-}
-
-.footer-distributed .footer-center p a {
-    color: #5383d3;
-    text-decoration: none;
-}
-
-/* Footer Right */
-
-.footer-distributed .footer-right {
-    width: 20%;
-}
-
-.footer-distributed .footer-company-about {
-    line-height: 20px;
-    color: #92999f;
-    font-size: 13px;
-    font-weight: normal;
-    margin: 0;
-}
-
-.footer-distributed .footer-company-about span {
-    display: block;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.footer-distributed .footer-icons {
-    margin-top: 25px;
-}
-
-.footer-distributed .footer-icons a {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    background-color: #33383b;
-    border-radius: 2px;
-
-    font-size: 20px;
-    color: #ffffff;
-    text-align: center;
-    line-height: 35px;
-
-    margin-right: 3px;
-    margin-bottom: 5px;
-}
-
-/* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 880px) {
-    .footer-distributed {
-        font: bold 14px sans-serif;
+    html {
+        scroll-behavior: smooth;
     }
-
+    
+    .footer-distributed {
+        background-color: #292c2f;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        font: bold 16px sans-serif;
+        padding: 55px 50px;
+        margin-top: 80px;
+    }
+    
     .footer-distributed .footer-left,
     .footer-distributed .footer-center,
     .footer-distributed .footer-right {
-        display: block;
-        width: 100%;
-        margin-bottom: 40px;
-        text-align: center;
+        display: inline-block;
+        vertical-align: top;
     }
-
+    /* Footer left */
+    
+    .footer-distributed .footer-left {
+        width: 40%;
+    }
+    /* The company logo */
+    
+    .footer-distributed h3 {
+        color: #ffffff;
+        font: normal 36px "Cookie", cursive;
+        margin: 0;
+    }
+    
+    .footer-distributed h3 span {
+        color: #5383d3;
+    }
+    /* Footer links */
+    
+    .footer-distributed .footer-links {
+        color: #ffffff;
+        margin: 20px 0 12px;
+        padding: 0;
+    }
+    
+    .footer-distributed .footer-links a {
+        display: inline-block;
+        line-height: 1.8;
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .footer-distributed .footer-company-name {
+        color: #8f9296;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+    /* Footer Center */
+    
+    .footer-distributed .footer-center {
+        width: 60%;
+    }
+    
     .footer-distributed .footer-center i {
-        margin-left: 0;
+        background-color: #33383b;
+        color: #ffffff;
+        font-size: 25px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 42px;
+        margin: 10px 15px;
+        vertical-align: middle;
     }
-}
-#top {
-    background-image: url('logo-background.jpg');
-    padding: 0%;
-}
-body {
-    background-color: #d24dff;
-}
-#los {
-    background-color: #f9f6f7;
-}
-.navbar-brand {
-    font-weight: bold;
-}
-.nav-text {
-    font-size: 10px;
-}
-.navbar-brand:hover {
-    background-color: #cb5a30;
-    color: #fff;
-}
-.nav a {
-    padding-right: 50px;
-    padding-left: 50px;
-}
-.jumbotron {
-    /* background-image: url("https://cdn.pixabay.com/photo/2017/03/13/10/25/hummingbird-2139278_1280.jpg"); */
-    background-image: url("rsz_1rsz_lossy_compressed_bird.jpg");
-    background-size: cover;
-    text-align: center;
-    top: -20;
-}
-
-@media only screen and (max-width: 600px) {
+    
+    .footer-distributed .footer-center i.fa-envelope {
+        font-size: 17px;
+        line-height: 38px;
+    }
+    
+    .footer-distributed .footer-center p {
+        display: inline-block;
+        color: #ffffff;
+        vertical-align: middle;
+        margin: 0;
+    }
+    
+    .footer-distributed .footer-center p span {
+        display: block;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 2;
+    }
+    
+    .footer-distributed .footer-center p a {
+        color: #5383d3;
+        text-decoration: none;
+    }
+    /* Footer Right */
+    
+    .footer-distributed .footer-right {
+        width: 20%;
+    }
+    
+    .footer-distributed .footer-company-about {
+        line-height: 20px;
+        color: #92999f;
+        font-size: 13px;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .footer-distributed .footer-company-about span {
+        display: block;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .footer-distributed .footer-icons {
+        margin-top: 25px;
+    }
+    
+    .footer-distributed .footer-icons a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background-color: #33383b;
+        border-radius: 2px;
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 35px;
+        margin-right: 3px;
+        margin-bottom: 5px;
+    }
+    /* If you don't want the footer to be responsive, remove these media queries */
+    
+    @media (max-width: 880px) {
+        .footer-distributed {
+            font: bold 14px sans-serif;
+        }
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: block;
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .footer-distributed .footer-center i {
+            margin-left: 0;
+        }
+    }
+    
+    #top {
+        background-image: url('logo-background.jpg');
+        padding: 0%;
+    }
+    
+    body {
+        background-color: #d24dff;
+    }
+    
+    #los {
+        background-color: #f9f6f7;
+    }
+    
+    .navbar-brand {
+        font-weight: bold;
+        color: #ffffff;
+    }
+    
+    .nav-text {
+        font-size: 10px;
+    }
+    
+    .navbar-brand:hover {
+        color: #cb5a30 !important;
+    }
+    
+    .nav a {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    
     .jumbotron {
-        background-position: 35%; 
+        /* background-image: url("https://cdn.pixabay.com/photo/2017/03/13/10/25/hummingbird-2139278_1280.jpg"); */
+        background-image: url("rsz_1rsz_lossy_compressed_bird.jpg");
+        background-size: cover;
+        text-align: center;
+        top: -20;
     }
-  }
-#appSummary {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.search-css {
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-}
-@media only screen and (max-width: 600px) {
+    
+    @media only screen and (max-width: 600px) {
+        .jumbotron {
+            background-position: 35%;
+        }
+    }
+    
+    #appSummary {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    
+    .search-css {
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .view-button {
+            width: 20% !important;
+        }
+    }
+    
     .view-button {
-        width: 20% !important;
+        width: 85px;
+        border-radius: 12px;
+        border: none;
+        right: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        background: #bbdefb;
+        position: absolute;
     }
-}
-.view-button {
-    width: 85px;
-    border-radius: 12px;
-    border: none;
-    right: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-    background: #bbdefb;
-    position: absolute;
-}
-.individual-result {
-    display: flex;
-    padding: 20px;
-    margin-top: 18px;
-    border-radius: 12px;
-    position: relative;
-}
-.search-result:hover {
-    box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.1);
-}
-.result-text {
-    width: 80%;
-}
-.search-result {
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-    color: white;
-    width: 100%;
-    border-radius: 10px;
-    margin: 0 auto;
-    padding-top: 150px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 50px;
-    padding-bottom: 150px;
-}
-
-input[type="text"] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #cb5a30;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-input[type="text"]:focus {
-    width: 100%;
-}
-
-.logout-text{
-    margin-top: 10px;
-    color: darkred;
-}
-
-input[type="formtext"] {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1.75px solid #28a745;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    padding: 12px 20px 12px 40px;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-.close {
-    position: absolute;
-    right: 25px;
-    top: 25;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: red;
-    cursor: pointer;
-}
-.down {
-    position: absolute;
-    right: 0px;
-    top: 10;
-    color: #000;
-    font-size: 30px;
-    font-weight: bold;
-}
-.down:hover,
-.down:focus {
-    color: green;
-    cursor: pointer;
-}
-.down2 {
-    position: absolute;
-    left: 25px;
-    top: 0;
-    color: green;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.responsive-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media (max-width: 600px) {
+    
+    .individual-result {
+        display: flex;
+        padding: 20px;
+        margin-top: 18px;
+        border-radius: 12px;
+        position: relative;
+    }
+    
+    .search-result:hover {
+        box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .result-text {
+        width: 80%;
+    }
+    
+    .search-result {
+        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        color: white;
+        width: 100%;
+        border-radius: 10px;
+        margin: 0 auto;
+        padding-top: 150px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 50px;
+        padding-bottom: 150px;
+    }
+    
+    input[type="text"] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #cb5a30;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    input[type="text"]:focus {
+        width: 100%;
+    }
+    
+    .logout-text {
+        margin-top: 10px;
+        color: darkred;
+    }
+    
+    input[type="formtext"] {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1.75px solid #28a745;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        padding: 12px 20px 12px 40px;
+    }
+    /* The Modal (background) */
+    
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+        padding-top: 60px;
+    }
+    /* Modal Content/Box */
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+    }
+    
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 25;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+    
+    .down {
+        position: absolute;
+        right: 0px;
+        top: 10;
+        color: #000;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .down:hover,
+    .down:focus {
+        color: green;
+        cursor: pointer;
+    }
+    
+    .down2 {
+        position: absolute;
+        left: 25px;
+        top: 0;
+        color: green;
+        font-size: 35px;
+        font-weight: bold;
+    }
+    
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    @media (max-width: 600px) {
+        .admin-form-container {
+            width: 80% !important;
+        }
+    }
+    
     .admin-form-container {
-        width: 80% !important;
+        background-color: #ffffff;
+        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+        transition: 0.3s;
+        width: 50%;
+        border-radius: 6px;
+        margin-top: 10%;
+        margin-left: auto;
+        margin-right: auto;
     }
-}
-
-.admin-form-container {
-    background-color: #ffffff;
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
-    transition: 0.3s;
-    width: 50%;
-    border-radius: 6px;
-    margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.admin-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.admin-username {
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-    padding: 10px;
-    border: 1.75px solid #008cba;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-}
-
-.admin-password {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-    border: 1.75px solid #008cba;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: white;
-}
-
-.admin-login-btn,
-.submit-upload-form {
-    height: 40px;
-    width: 150px;
-    border-radius: 5px;
-    margin: auto;
-    background-color: white;
-    color: black;
-    border: 1px solid #008cba;
-    margin-bottom: 30px;
-}
-
-.admin-login-btn:hover,
-.submit-upload-form:hover {
-    transition-duration: 0.4s;
-    background-color: #008cba;
-    color: white;
-}
-
-.admin-login-header {
-    font-size: 20px;
-    padding: 20px;
-    padding-bottom: 0px;
-}
-
-.upload-form {
-    background-color: #ffffff;
-    margin-left: 7%;
-    margin-right: 7%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border-radius: 7px;
-    padding: 30px;
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
-}
-
-.upload-form-header {
-    font-size: 18px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    font-weight: 300;
-}
-
-.admin-upload-header {
-    font-size: 25px;
-    padding-bottom: 30px;
-}
-
-.upload-form-textarea {
-    width: 70%;
-    height: 100px;
-    border: 1.75px solid #28a745;
-    border-radius: 4px;
-    padding-bottom: 10px;
-}
-
-.upload-file {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 300px;
-}
+    
+    .admin-form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .admin-username {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1.75px solid #008cba;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+    }
+    
+    .admin-password {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+        box-sizing: border-box;
+        border: 1.75px solid #008cba;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: white;
+    }
+    
+    .admin-login-btn,
+    .submit-upload-form {
+        height: 40px;
+        width: 150px;
+        border-radius: 5px;
+        margin: auto;
+        background-color: white;
+        color: black;
+        border: 1px solid #008cba;
+        margin-bottom: 30px;
+    }
+    
+    .admin-login-btn:hover,
+    .submit-upload-form:hover {
+        transition-duration: 0.4s;
+        background-color: #008cba;
+        color: white;
+    }
+    
+    .admin-login-header {
+        font-size: 20px;
+        padding: 20px;
+        padding-bottom: 0px;
+    }
+    
+    .upload-form {
+        background-color: #ffffff;
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-radius: 7px;
+        padding: 30px;
+        box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+    }
+    
+    .upload-form-header {
+        font-size: 18px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-weight: 300;
+    }
+    
+    .admin-upload-header {
+        font-size: 25px;
+        padding-bottom: 30px;
+    }
+    
+    .upload-form-textarea {
+        width: 70%;
+        height: 100px;
+        border: 1.75px solid #28a745;
+        border-radius: 4px;
+        padding-bottom: 10px;
+    }
+    
+    .upload-file {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 300px;
+    }
+    
+    @media (min-width: 768px) {
+        .nav-content-responsive {
+            position: absolute;
+            font-size: 16px;
+            top: 2px;
+            right: 0;
+        }
+    }
+    
+    .nav-link {
+        color: #ffffffb0 !important;
+    }
+    
+    .nav-link:hover {
+        color: #ffffff !important;
+    }
