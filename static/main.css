@@ -190,8 +190,10 @@
     
     .jumbotron {
         /* background-image: url("https://cdn.pixabay.com/photo/2017/03/13/10/25/hummingbird-2139278_1280.jpg"); */
-        background-image: url("rsz_1rsz_lossy_compressed_bird.jpg");
+        /*background-image: url("rsz_1rsz_lossy_compressed_bird.jpg");*/
+        background-image: url("bird_bg_loss.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
         text-align: center;
         top: -20;
     }
