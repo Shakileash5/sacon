@@ -265,7 +265,7 @@
     }
     
     input[type="text"] {
-        width: 130px;
+        width: 340px;
         box-sizing: border-box;
         border: 2px solid #cb5a30;
         border-radius: 4px;
@@ -279,7 +279,13 @@
     }
     
     input[type="text"]:focus {
-        width: 100%;
+        width: 500px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        input[type="text"]:focus {
+            width: 350px !important;
+        }
     }
     
     .logout-text {
