@@ -232,20 +232,16 @@
     <div class="row"
         style="background-color:#4f98ca;color:white;padding-bottom:90PX; padding-left:50px;padding-top:60px;padding-right:30px; margin-top:30px;margin-right:0px;">
         <div class=".col-md-8">
-            <h2 style="color:rgb(247, 245, 245);"><b>Do you wish to publish your thesis?...</b></h2>
+            <h2 style="color:rgb(247, 245, 245);"><b>Do you wish to index your thesis? </b></h2>
             <h5>
-                <p>Send your thesis to us.<br>Attach your thesis and type your discription then mail us,we will send you
-                    the feedback about the thesis as soon as possible.</p>
-                <br>
-                <p>SACON is an friendly organisation, we always welcome your effort on the nature...
+                <p>Please, send the bibliographic details about your thesis to us.
             </h5>
         </div>
         <span style="border-left: 5px solid #c1461a; margin-left:20px;padding-right:30px;"></span>
         <div class=".col-md-4" style="padding-top:10px;padding-left:0px;">
-            <h3>Click to mail US <i class="fa fa-envelope"></i></h3>
-
-            <a href="mailto:nod.sacon@gmail.com?subject=Thesis on board" target="_blank" class="btn btn-primary">Email
-                Us</a>
+            
+            <h3>Click to mail us..</h3>
+            <a href="mailto:nod.sacon@gmail.com?subject=Thesis on board" target="_blank" class="btn btn-primary"><i class="fa fa-envelope"></i> Email us</a>
         </div>
 
     </div>
@@ -255,7 +251,7 @@
             <div>
                 <i class="fa fa-map-marker"></i>
                 <p>
-                    <span> National Ornithological Databank(NOD) Cell</span>
+                    <span> National Ornithological Databank (NOD) Cell</span>
                     <span> Sálim Ali Centre for Ornithology and Natural History (SACON)</span>
                     <span> Anaikatty (POST)</span>
                     <span> Coimbatore-641108</span>
@@ -309,62 +305,42 @@
         document.cookie = document.cookie + 'SameSite=None; Secure';
         $('#search_text').keyup(function () {
             var name = $('#search_text').val();
-            $.ajax({
-                type: 'post',
-                url: "/search",
-                data: { name: name },
-                success: function (response) {
-                    if (response == "500") {
-                        console.log("Something went wrong!!")
-                    }
-                    else {
-                        res = JSON.parse(response)
-                        keys = Object.keys(res)
-                        //console.log(keys.length);
-                        var convert = ""
-                        if (keys.length == 0) {
-                            convert = "<br> No Such data is found !!!";
+            if(name != ""){
+                    $.ajax({
+                    type: 'post',
+                    url: "/search",
+                    data: { name: name },
+                    success: function (response) {
+                        if (response == "500") {
+                            console.log("Something went wrong!!")
                         }
                         else {
-                            for (var i = 0; i < keys.length; i++) {
-                                var label = res[keys[i]][8]
-                                convert = convert + '<div class="individual-result"> <div class="result-text">  ' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + '</div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
+                            res = JSON.parse(response)
+                            keys = Object.keys(res)
+                            //console.log(keys.length);
+                            var convert = ""
+                            if (keys.length == 0) {
+                                convert = "<br> No Such data is found !!!";
                             }
-                        }
+                            else {
+                                for (var i = 0; i < keys.length; i++) {
+                                    var label = res[keys[i]][8]
+                                    convert = convert + '<div class="individual-result"> <div class="result-text">  ' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + '</div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
+                                }
+                            }
 
-                        $('#result').html(convert);
+                            $('#result').html(convert);
+                        }
                     }
-                }
-            });
+                });
+            }
+            else{
+                $('#result').html('<div class="individual-result"> <div class="result-text">Results will appear here </div></div> ');
+            }
+            
         });
     
-        $.ajax({
-                type: 'post',
-                url: "/search",
-                data: { name: "" },
-                success: function (response) {
-                    if (response == "500") {
-                        console.log("Something went wrong!!")
-                    }
-                    else {
-                        res = JSON.parse(response)
-                        keys = Object.keys(res)
-                        //console.log(keys.length);
-                        var convert = ""
-                        if (keys.length == 0) {
-                            convert = "<br> No Such data is found !!!";
-                        }
-                        else {
-                            for (var i = 0; i < keys.length; i++) {
-                                var label = res[keys[i]][8]
-                                convert = convert + '<div class="individual-result"> <div class="result-text"> ' + res[keys[i]][0] + ' - ' + res[keys[i]][1] + ' - ' + res[keys[i]][2] + ' - ' + res[keys[i]][3] + ' - ' + res[keys[i]][4] + ' - ' + res[keys[i]][5] + ' - ' + res[keys[i]][6] + ' - ' + res[keys[i]][7] + ' - ' + res[keys[i]][8] + '</div> <button class="view-button" data-label="' + label + '" onClick = "myclick(this)"> View </button> </div>';
-                            }
-                        }
-
-                        $('#result').html(convert);
-                    }
-                }
-            });       
+        
     
     });
     // Get the modal
