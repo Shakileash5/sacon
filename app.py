@@ -67,7 +67,7 @@ def auto_login():
     if request.method == "POST":
         data = dict(request.form)
         keys = session.keys()
-        print(session,data)
+        #print(session,data)
         for key in keys:
             if session[key]["Token"] == data["Token"] and session[key]["loggedIn"] == True:
                 return "redirect"
@@ -79,7 +79,7 @@ def upload_form():
     if request.method == "POST":
         data = dict(request.form)
         keys = session.keys()
-        print(session,data,"upload_form")
+        #print(session,data,"upload_form")
         for key in keys:
             if session[key]["Token"] == data["Token"]:
                 #return render_template("admin.html",name = key,token = data["Token"])
@@ -99,7 +99,7 @@ def logout():
 
 @app.route("/admin_call",methods=["GET","POST"])
 def admin():
-    print("val",request.referrer)
+    #print("val",request.referrer)
     if request.referrer is None:
         return render_template("admin_login.html")
     if "/admin" in request.referrer or "/upload_form" in request.referrer:
@@ -157,7 +157,7 @@ def search():
         #print("Matched data value's are:::",data)    
         return data
     except:
-            print(sys.exc_info()[0])
+            #print(sys.exc_info()[0])
             return "500"
                     
 @app.route("/get_file",methods = ["GET","POST"])
@@ -179,7 +179,7 @@ def get_thesis():
     if request.method == "GET":
         try:
             key = dict(request.args)["key"]
-            print("The key ::",key)
+            #print("The key ::",key)
             data = [value[key]["Author"],value[key]["Year"],value[key]["Title"],value[key]["Academic department"],value[key]["City"],value[key]["University"],value[key]["No of pages"],value[key]["Thesis type"],value[key]["Label"],value[key]['Keywords'],key]
             data = json.dumps(data) 
             return data
@@ -234,7 +234,7 @@ def upload_file():
             print("::::file_uploaded::::")
             os.remove(filename) 
             val = dict(db.child("thesis_data").get().val())
-            print("recieved")
+            #print("recieved")
             keys = val.keys() 
             flag = 0
             for key in keys:
