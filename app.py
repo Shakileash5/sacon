@@ -18,6 +18,7 @@ config = {
   "storageBucket": "sacon-search.appspot.com",
   "serviceAccount": "Credentials/sacon-search-firebase-adminsdk-yq4jc-4bc5493504.json"
 }
+
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 value = dict(db.child("thesis_data").get().val())

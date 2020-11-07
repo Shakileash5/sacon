@@ -2,13 +2,6 @@ import pyrebase
 import requests
 import json
 
-config_ = {
-  "apiKey": "AIzaSyDLYsJm85_J4D0rKZ0TLLMAM-3orCXGE6A",
-  "authDomain": "sacon-250805.firebaseapp.com",
-  "databaseURL": "https://sacon-250805.firebaseio.com/",
-  "storageBucket": "sacon-250805.appspot.com",
-  "serviceAccount": "Credentials/sacon-250805-firebase-adminsdk-cc9yo-7d68092103.json"
-}
 config = {
   "apiKey": "AIzaSyA_DAsVDs2wNv2glJ9hE5KPMNc4tygdDf0",
   "authDomain": "sacon-search.firebaseapp.com",
