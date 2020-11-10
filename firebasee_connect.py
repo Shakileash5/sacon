@@ -10,7 +10,7 @@ config = {
   "serviceAccount": "Credentials/sacon-search-firebase-adminsdk-yq4jc-4bc5493504.json"
 }
 
-firebase = pyrebase.initialize_app(config_)
+firebase = pyrebase.initialize_app(config)
 #auth = firebase.auth()
 
 #user = auth.sign_in_with_email_and_password("shakileash2000@gmail.com","sugishaki1")
@@ -31,9 +31,9 @@ data = {'Author': 'Singh, P.', 'Year': '2014', 'University': 'Forest Research In
 
 d = json.dumps(data)
 print(d)
-db.child("thesis_data").child("17537157278").update(data)
+#db.child("thesis_data").child("17537157278").update(data)
 
-#val = dict(db.child("thesis_data").get().val())
+val = dict(db.child("thesis_data").order_by_child("Year").get().val())
 #print(val)
 #keys = val.keys()
 

@@ -21,7 +21,7 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-value = dict(db.child("thesis_data").get().val())
+value = dict(db.child("thesis_data").order_by_child("Year").get().val())
 keys = value.keys()
 storage = firebase.storage()
 auth = firebase.auth()
@@ -30,7 +30,7 @@ session = {}
 
 def load_data():
     global keys,value,storage   
-    value = dict(db.child("thesis_data").get().val())
+    value = dict(db.child("thesis_data").order_by_child("Year").get().val())
     keys = value.keys()
     storage = firebase.storage()
 
@@ -234,7 +234,7 @@ def upload_file():
             storage.child(filename).put(filename)
             print("::::file_uploaded::::")
             os.remove(filename) 
-            val = dict(db.child("thesis_data").get().val())
+            val = dict(db.child("thesis_data").order_by_child("Year").get().val())
             #print("recieved")
             keys = val.keys() 
             flag = 0
