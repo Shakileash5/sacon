@@ -303,8 +303,9 @@
 
     $(document).ready(function () {
         document.cookie = document.cookie + 'SameSite=None; Secure';
-        $('#search_text').keyup(function () {
+        $('#search_text').keyup(function (e) {
             var name = $('#search_text').val();
+            //console.log(event.keyCode)
             if(name != ""){
                     $.ajax({
                     type: 'post',
@@ -339,7 +340,7 @@
             }
             
         });
-    
+       
         
     
     });
