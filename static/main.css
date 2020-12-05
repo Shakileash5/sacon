@@ -510,3 +510,8 @@
     .nav-link:hover {
         color: #ffffff !important;
     }
+
+    .search-btn-main{
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
