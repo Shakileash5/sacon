@@ -265,7 +265,7 @@
     }
     
     input[type="text"] {
-        width: 340px;
+        width: 40%;
         box-sizing: border-box;
         border: 2px solid #cb5a30;
         border-radius: 4px;
@@ -279,14 +279,14 @@
     }
     
     input[type="text"]:focus {
-        width: 500px;
+        width: 60%;
     }
     
-    @media only screen and (max-width: 600px) {
+    /* @media only screen and (max-width: 600px) {
         input[type="text"]:focus {
             width: 350px !important;
         }
-    }
+    } */
     
     .logout-text {
         margin-top: 10px;
@@ -513,5 +513,4 @@
 
     .search-btn-main{
         margin-left: 20px;
-        margin-bottom: 10px;
     }
