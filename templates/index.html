@@ -183,7 +183,7 @@
                     <div class="col-sm-12">
                         <form class="form-inline" method="GET">
                             <input type="text" name="key" id="search_text" placeholder="Search">
-                            <span class="btn btn-primary search-btn-main">Search</span>
+                            <span class="btn btn-primary search-btn-main" id="search-firebase">Search</span>
                         </form>
                     </div>
                 </div>
@@ -330,7 +330,7 @@
 
     $(document).ready(function () {
         document.cookie = document.cookie + 'SameSite=None; Secure';
-        $('#search_text').keyup(function (e) {
+        $('#search-firebase').on("click",function (e) {
             var name = $('#search_text').val();
             //console.log(event.keyCode)
             if (name != "") {
