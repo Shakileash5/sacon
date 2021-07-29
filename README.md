@@ -21,7 +21,7 @@ Make sure you have knowledge about python,pip and Flask.
    $ git clone https://github.com/Shakileash5/sacon.git
 ```
 ```sh
-   $ cd bitHook
+   $ cd sacon
 ```
 * Install dependencies
 ```sh
