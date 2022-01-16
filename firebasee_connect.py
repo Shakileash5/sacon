@@ -3,17 +3,16 @@ import requests
 import json
 
 config = {
-  "apiKey": "AIzaSyA_DAsVDs2wNv2glJ9hE5KPMNc4tygdDf0",
-  "authDomain": "sacon-search.firebaseapp.com",
-  "databaseURL": "https://sacon-search.firebaseio.com/",
-  "storageBucket": "sacon-search.appspot.com",
-  "serviceAccount": "Credentials/sacon-search-firebase-adminsdk-yq4jc-4bc5493504.json"
+  "apiKey": "",
+  "authDomain": "",
+  "databaseURL": "",
+  "storageBucket": "",
+  "serviceAccount": ""
 }
 
 firebase = pyrebase.initialize_app(config)
 #auth = firebase.auth()
 
-#user = auth.sign_in_with_email_and_password("shakileash2000@gmail.com","sugishaki1")
 #print(user.keys())
 db = firebase.database()
 keywords = ["Rails",
